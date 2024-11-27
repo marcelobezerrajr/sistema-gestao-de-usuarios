@@ -1,4 +1,4 @@
-# ViperIt Project - User Management System
+# Sistema Gestão de Usuários
 
 ## Descrição do Projeto
 
