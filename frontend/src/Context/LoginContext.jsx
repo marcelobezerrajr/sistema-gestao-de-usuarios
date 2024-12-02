@@ -35,7 +35,7 @@ export const LoginProvider = ({ children }) => {
     try {
       const userData = await loginService.login(email, password);
       setUser(userData);
-      navigate('/customers');
+      navigate('/users');
     } catch (error) {
       setError(error.message);
       console.error('Erro no login:', error);

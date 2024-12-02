@@ -25,6 +25,7 @@ const loginService = {
 
       const userData = userResponse.data;
 
+      localStorage.setItem('user_name', userData.name);
       localStorage.setItem('user_email', userData.email);
       localStorage.setItem('user_username', userData.username);
       localStorage.setItem('user_permission', userData.permission);
@@ -51,6 +52,7 @@ const loginService = {
 
   logout: () => {
     localStorage.removeItem('access_token');
+    localStorage.removeItem('user_name');
     localStorage.removeItem('user_email');
     localStorage.removeItem('user_username');
     localStorage.removeItem('user_permission');
