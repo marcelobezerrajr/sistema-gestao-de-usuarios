@@ -1,8 +1,8 @@
-# ViperIt Project - User Management System
+# Sistema Gestão de Usuários
 
 ## Descrição do Projeto
 
-O projeto **ViperIt User Management System** é um sistema web de gerenciamento de usuários, desenvolvido para facilitar o controle de acesso e a administração de usuários dentro de uma aplicação. Ele oferece uma interface amigável e segura para que administradores possam gerenciar contas de usuários, com diferentes níveis de permissão, e realizar ações de CRUD (Create, Read, Update, Delete).
+O projeto **Sistema Gestão de Usuários** é um sistema web de gerenciamento de usuários, desenvolvido para facilitar o controle de acesso e a administração de usuários dentro de uma aplicação. Ele oferece uma interface amigável e segura para que administradores possam gerenciar contas de usuários, com diferentes níveis de permissão, e realizar ações de CRUD (Create, Read, Update, Delete).
 
 ## Funcionalidades Principais
 
@@ -19,7 +19,7 @@ O projeto **ViperIt User Management System** é um sistema web de gerenciamento 
 ### 2. Home Page
 
 - **Navbar:**
-  - **Logo e Nome da Empresa:** ViperIt.
+  - **Logo e Nome da Empresa:** Marcelo Desenvolvedor.
   - **Links:**
     - **Home:** Redireciona para a página inicial.
     - **About:** Informações sobre o sistema ou a empresa.
