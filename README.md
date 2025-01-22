@@ -1,5 +1,7 @@
-
-# Sistema Gestão de Usuários 👨🏻‍💻
+<div align="center">
+    <img src="./frontend/src/assets/logo_marcelo_developer_branco.png" height="70" style="margin-bottom: 20px; margin-top: 20px;">
+    <h1 align="center">Sistema Gestão de Usuários 👨🏻‍💻</h1>
+</div>
 
 Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o controle de acesso e a administração de usuários dentro de uma aplicação. Ele oferece uma interface amigável e segura para que administradores possam gerenciar contas de usuários, com diferentes níveis de permissão, e realizar ações de CRUD (Create, Read, Update, Delete).
 
@@ -59,6 +61,8 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
 **Autenticação e Autorização:** JWT e OAuth2PasswordBearer
 
 **Envio de E-mails:** MIMEMultipart
+
+<img src="https://skillicons.dev/icons?i=vite,react,fastapi,python,git,sqlite&theme=dark" />
 
 ## Documentação da API - CRUD
 
@@ -505,3 +509,7 @@ Execute o comando para servir a pasta `dist`:
 ```bash
   serve -s dist
 ```
+
+## Licença
+
+[MIT](https://github.com/marcelobezerrajr/sistema-gestao-de-usuarios/blob/main/LICENSE)
