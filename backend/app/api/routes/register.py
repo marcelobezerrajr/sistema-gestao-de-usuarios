@@ -1,6 +1,6 @@
-from datetime import timedelta
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
+from datetime import timedelta
 from dotenv import load_dotenv
 import os
 import logging
@@ -15,9 +15,10 @@ register_router = APIRouter(prefix="/register")
 
 load_dotenv()
 
-ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('ACCESS_TOKEN_EXPIRE_MINUTES'))
+ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
 
 logger = logging.getLogger(__name__)
+
 
 @register_router.post("", response_model=UsersListResponse)
 def register_user(user_form: UserForm, db: Session = Depends(get_db)):
@@ -25,8 +26,7 @@ def register_user(user_form: UserForm, db: Session = Depends(get_db)):
     if user:
         logger.warning(f"Registration attempt with existing email: {user_form.email}")
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Email already registered"
+            status_code=status.HTTP_400_BAD_REQUEST, detail="Email already registered"
         )
 
     new_user = User(
@@ -36,7 +36,7 @@ def register_user(user_form: UserForm, db: Session = Depends(get_db)):
         email=user_form.email,
         hashed_password=user_form.hashed_password,
         telephone=user_form.telephone,
-        permission=user_form.permission
+        permission=user_form.permission,
     )
 
     db.add(new_user)
@@ -53,5 +53,5 @@ def register_user(user_form: UserForm, db: Session = Depends(get_db)):
         "message": "User registered successfully!",
         "data": [UserOut.from_orm(new_user)],
         "access_token": access_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
     }

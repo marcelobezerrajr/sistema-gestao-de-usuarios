@@ -1,9 +1,10 @@
 from passlib.context import CryptContext
 import logging
 
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
 logger = logging.getLogger(__name__)
+
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     try:
@@ -13,6 +14,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     except Exception as e:
         logger.error(f"Password verification failed: {str(e)}")
         return False
+
 
 def get_password_hash(password: str) -> str:
     try:

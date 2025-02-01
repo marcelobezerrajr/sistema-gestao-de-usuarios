@@ -16,9 +16,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 def configure_all(app: FastAPI):
     configure_routes(app)
     configure_db()
+
 
 def configure_routes(app: FastAPI):
     app.include_router(login.login_router, tags=["Login"])
@@ -27,18 +29,26 @@ def configure_routes(app: FastAPI):
     app.include_router(reset_password.reset_password_router, tags=["Forgot Password"])
     app.include_router(user.user_router, tags=["User"])
 
+
 def configure_db():
     Base.metadata.create_all(bind=engine)
+
 
 @app.exception_handler(Exception)
 def global_exception_handler(request: Request, exc: Exception):
     logging.error(f"Unexpected error: {exc}")
     return JSONResponse(
         status_code=500,
-        content={"message": "Internal server error", "details": str(exc), "request": request.url},
+        content={
+            "message": "Internal server error",
+            "details": str(exc),
+            "request": request.url,
+        },
     )
 
+
 configure_all(app)
+
 
 @app.get("/")
 def root():
