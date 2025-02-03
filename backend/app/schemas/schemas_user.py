@@ -88,7 +88,7 @@ class UserUpdateForm(BaseModel):
 
 
 class UserOut(BaseModel):
-    id: int
+    id_user: int
     username: Optional[str] = None
     name: Optional[str] = None
     last_name: Optional[str] = None

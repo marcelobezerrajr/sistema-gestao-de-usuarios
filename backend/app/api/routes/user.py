@@ -19,13 +19,19 @@ from app.api.depends import get_db, get_admin_user, get_user_admin, get_read_use
 from app.core.security import create_access_token
 from app.utils.validate_password import validate_password
 
-user_router = APIRouter(prefix="/user")
-
 load_dotenv()
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES"))
 
-logger = logging.getLogger(__name__)
+if not ACCESS_TOKEN_EXPIRE_MINUTES:
+    raise ValueError(
+        "ACCESS_TOKEN_EXPIRE_MINUTES must be defined in environment variables"
+    )
+
+user_router = APIRouter(prefix="/user")
 
 
 @user_router.get("/list", response_model=UsersListResponse)
@@ -34,7 +40,7 @@ def list_users_route(
 ):
     try:
         users = get_all_users(db)
-        logger.info(f"Users listed successfully by admin: {current_user.email}")
+        logger.info(f"Users listed successfully by admin: {current_user.username}")
         return {
             "status": "success",
             "message": "Listed users successfully.",
@@ -70,7 +76,7 @@ def create_user_route(
             data={"sub": user_form.email}, expires_delta=access_token_expires
         )
         logger.info(
-            f"User {new_user.email} created successfully by {current_user.email}."
+            f"User {new_user.email} created successfully by user: {current_user.username}."
         )
         return {
             "status": "success",
@@ -104,7 +110,7 @@ def view_user_route(
             data={"sub": current_user.email}, expires_delta=access_token_expires
         )
         logger.info(
-            f"User details retrieved successfully by user: {current_user.email}"
+            f"User details retrieved successfully by user: {current_user.username}"
         )
         return {
             "status": "success",
@@ -135,7 +141,7 @@ def update_user_route(
         access_token = create_access_token(
             data={"sub": current_user.email}, expires_delta=access_token_expires
         )
-        logger.info(f"User updated successfully by user: {current_user.email}")
+        logger.info(f"User updated successfully by user: {current_user.username}")
         return {
             "status": "success",
             "message": "User updated successfully!",
@@ -164,7 +170,7 @@ def delete_user_route(
         access_token = create_access_token(
             data={"sub": current_user.email}, expires_delta=access_token_expires
         )
-        logger.info(f"User deleted successfully by admin: {current_user.email}")
+        logger.info(f"User deleted successfully by admin: {current_user.username}")
         return {
             "status": "success",
             "message": "User deleted successfully!",

@@ -23,16 +23,19 @@ from app.api.depends import get_db
 
 load_dotenv()
 
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
 SECRET_KEY = os.getenv("SECRET_KEY")
 ALGORITHM = os.getenv("ALGORITHM")
 RESET_TOKEN_EXPIRY_HOURS = int(os.getenv("RESET_TOKEN_EXPIRY_HOURS"))
 
-if not SECRET_KEY or not ALGORITHM:
-    raise ValueError("SECRET_KEY and ALGORITHM must be set in environment variables")
+if not SECRET_KEY or not ALGORITHM or not RESET_TOKEN_EXPIRY_HOURS:
+    raise ValueError(
+        "SECRET_KEY, ALGORITHM and RESET_TOKEN_EXPIRY_HOURS must be defined in environment variables"
+    )
 
 reset_password_router = APIRouter(prefix="/reset-password")
-
-logger = logging.getLogger(__name__)
 
 
 def create_reset_token(user_id: str):

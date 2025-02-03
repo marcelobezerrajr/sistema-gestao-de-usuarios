@@ -26,7 +26,9 @@ if not all(
         RESET_PASSWORD_URL,
     ]
 ):
-    raise ValueError("Algumas variáveis de ambiente necessárias não estão definidas")
+    raise ValueError(
+        "Some environment variable responsible for sending email was not defined.."
+    )
 
 logger = logging.getLogger(__name__)
 
@@ -54,12 +56,12 @@ def send_email(to_address: str, subject: str, body: str, image_path: str = None)
         server.sendmail(EMAIL_FROM, to_address, msg.as_string())
         server.quit()
 
-        logger.info(f"E-mail enviado com sucesso para: {to_address}")
+        logger.info(f"Email successfully sent to: {to_address}")
     except smtplib.SMTPException as e:
-        logger.error(f"Falha ao enviar e-mail: {e}")
+        logger.error(f"Failed to send email: {e}")
         raise HTTPException(
             status_code=500,
-            detail="Falha ao enviar e-mail. Por favor, tente novamente mais tarde.",
+            detail="Failed to send email. Please try again later.",
         )
 
 
@@ -105,7 +107,7 @@ def send_reset_password_email(email: str, token: str):
     """
 
     logo = os.path.join(
-        os.path.dirname(__file__), "../static/assets/logo_marcelo_desenvolvedor.png"
+        os.path.dirname(__file__), "../static/assets/logo_marcelo_developer.png"
     )
     image_path = os.path.abspath(logo)
     send_email(email, subject, body, image_path)
@@ -151,7 +153,7 @@ def send_password_reset_confirmation_email(email: str):
     """
 
     logo = os.path.join(
-        os.path.dirname(__file__), "../static/assets/logo_marcelo_desenvolvedor.png"
+        os.path.dirname(__file__), "../static/assets/logo_marcelo_developer.png"
     )
     image_path = os.path.abspath(logo)
     send_email(email, subject, body, image_path)

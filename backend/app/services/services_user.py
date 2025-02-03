@@ -5,11 +5,19 @@ import logging
 from app.database.models.models_user import User
 from app.schemas.schemas_user import UserForm, UserUpdateForm
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
 def get_all_users(db: Session):
-    return db.query(User).all()
+    logger.info("Searching all users.")
+    usuarios = db.query(User).all()
+    if not usuarios:
+        logger.warning("User not found.")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, detail="User not found"
+        )
+    return usuarios
 
 
 def get_user_by_id(db: Session, user_id: int):
@@ -24,6 +32,7 @@ def get_user_by_id(db: Session, user_id: int):
 
 def create_user(db: Session, user_form: UserForm) -> User:
     try:
+        logger.info(f"Creating user {user_form.email}.")
         if db.query(User).filter(User.email == user_form.email).first():
             logger.warning(
                 f"Attempt to create a user with existing email: {user_form.email}"
@@ -54,6 +63,7 @@ def create_user(db: Session, user_form: UserForm) -> User:
 
 
 def update_user(db: Session, user_id: int, user_form: UserUpdateForm):
+    logger.info(f"Updating user with ID {user_id}.")
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         logger.error(f"User not found with id: {user_id}")
@@ -75,6 +85,7 @@ def update_user(db: Session, user_id: int, user_form: UserUpdateForm):
 
 
 def delete_user(db: Session, user_id: int):
+    logger.info(f"Deleting user with ID {user_id}.")
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         logger.error(f"User not found with id: {user_id}")

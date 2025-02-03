@@ -3,6 +3,7 @@ import logging
 
 pwd_context = CryptContext(schemes=["argon2"], deprecated="auto")
 
+logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
