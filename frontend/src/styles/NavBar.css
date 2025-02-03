@@ -1,228 +1,228 @@
 .marcelo-desenvolvedor-navbar {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    padding: 15px 30px;
-    background-color: #ffffff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  padding: 15px 30px;
+  background-color: #ffffff;
 }
 
 .marcelo-desenvolvedor-navbar .navbar-brand {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .marcelo-desenvolvedor-navbar .navbar-brand img {
-    margin-right: 15px;
-    transition: transform 0.3s, filter 0.3s;
+  margin-right: 15px;
+  transition: transform 0.3s, filter 0.3s;
 }
 
 .marcelo-desenvolvedor-navbar .navbar-brand img:hover {
-    transform: scale(1.1);
-    filter: brightness(0.9);
+  transform: scale(1.1);
+  filter: brightness(0.9);
 }
 
 .marcelo-desenvolvedor-navbar .navbar-brand span {
-    font-size: 1.4rem;
-    font-weight: bold;
-    transition: color 0.3s;
-    color: #004F97;
+  font-size: 1.4rem;
+  font-weight: bold;
+  transition: color 0.3s;
+  color: #004f97;
 }
 
 .marcelo-desenvolvedor-navbar .navbar-brand span:hover {
-    color: #1684BF;
+  color: #1684bf;
 }
 
 .marcelo-desenvolvedor-navbar .nav-link {
-    margin-right: 20px;
-    transition: color 0.3s;
+  margin-right: 20px;
+  transition: color 0.3s;
 }
 
 .marcelo-desenvolvedor-navbar .nav-link:hover {
-    color: #1684BF;
+  color: #1684bf;
 }
 
 .marcelo-desenvolvedor-navbar .nav-dropdown .dropdown-menu {
-    background-color: #1684BF;
+  background-color: #1684bf;
 }
 
 .marcelo-desenvolvedor-navbar .nav-dropdown .dropdown-item {
-    color: #fff;
+  color: #fff;
 }
 
 .marcelo-desenvolvedor-navbar .nav-dropdown .dropdown-item:hover {
-    background-color: #004F98;
+  background-color: #004f98;
 }
 
 .marcelo-desenvolvedor-navbar .form-inline {
-    display: flex;
-    align-items: center;
-    margin-right: 15px;
+  display: flex;
+  align-items: center;
+  margin-right: 15px;
 }
 
 .marcelo-desenvolvedor-navbar .form-inline .form-control {
-    margin-right: 15px;
-    border-radius: 5px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+  margin-right: 15px;
+  border-radius: 5px;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .marcelo-desenvolvedor-navbar .form-inline .form-control:focus {
-    border-color: #1684BF;
-    box-shadow: 0 0 0 0.2rem rgba(22, 132, 191, 0.25);
+  border-color: #1684bf;
+  box-shadow: 0 0 0 0.2rem rgba(22, 132, 191, 0.25);
 }
 
 .marcelo-desenvolvedor-navbar .form-inline .btn {
-    border-radius: 5px;
-    transition: background-color 0.3s, border-color 0.3s;
+  border-radius: 5px;
+  transition: background-color 0.3s, border-color 0.3s;
 }
 
 .avatar-link {
-    display: flex;
-    align-items: center;
-    color: #004F97;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  color: #004f97;
+  cursor: pointer;
 }
 
 @media (max-width: 768px) {
-    .marcelo-desenvolvedor-navbar .nav-link,
-    .marcelo-desenvolvedor-navbar .nav-dropdown,
-    .marcelo-desenvolvedor-navbar .form-inline {
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+  .marcelo-desenvolvedor-navbar .nav-link,
+  .marcelo-desenvolvedor-navbar .nav-dropdown,
+  .marcelo-desenvolvedor-navbar .form-inline {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 }
 
 .marcelo-desenvolvedor-nav .custom-badge {
-    background-color: #1684BF !important;
-    color: #ffffff;
-    padding: 5px 10px;
-    border-radius: 7px;
-    border-color: #004F98;
+  background-color: #1684bf !important;
+  color: #ffffff;
+  padding: 5px 10px;
+  border-radius: 7px;
+  border-color: #004f98;
 }
 
 .custom-form .custom-button {
-    background-color: #004F98;
-    border-color: #1684BF;
-    color: #ffffff;
+  background-color: #004f98;
+  border-color: #1684bf;
+  color: #ffffff;
 }
 
 .custom-form .custom-button-search {
-    background-color: #1684BF;
-    color: #ffffff;
+  background-color: #1684bf;
+  color: #ffffff;
 }
 
 .custom-form .custom-button-search:hover {
-    background-color: #004F98;
+  background-color: #004f98;
 }
 
 .custom-form .custom-button:hover {
-    background-color: #2A2D83;
-    border-color: #004F97;
-    color: #ffffff;
+  background-color: #2a2d83;
+  border-color: #004f97;
+  color: #ffffff;
 }
 
 .custom-form .custom-search {
-    border-color: #004F98;
-    color: #1684BF;
+  border-color: #004f98;
+  color: #1684bf;
 }
 
 .custom-form .custom-search:focus {
-    border-color: #004F98;
-    color: #1684BF;
+  border-color: #004f98;
+  color: #1684bf;
 }
 
 .custom-form .custom-search::placeholder {
-    color: #1684BF;
+  color: #1684bf;
 }
 
 /* Efeito de hover no ícone/avatares */
 .user-icon {
-    color: #004F97;
+  color: #004f97;
 }
 
 .user-avatar {
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    margin-right: 10px;
-    border: 2px solid #1684BF;
-    transition: border-color 0.3s ease;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  margin-right: 10px;
+  border: 2px solid #1684bf;
+  transition: border-color 0.3s ease;
 }
 
 .user-info {
-    margin-top: 22px;
-    color: #004F97;
-    font-size: 1rem;
-    font-weight: 600;
-    margin-left: 10px;
+  margin-top: 22px;
+  color: #004f97;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-left: 10px;
 }
 
 .user-avatar:hover,
 .user-icon:hover {
-    cursor: pointer;
-    border-color: #1684BF;
-    color: #1684BF;
+  cursor: pointer;
+  border-color: #1684bf;
+  color: #1684bf;
 }
 
 .custom-user-dropdown .dropdown-menu {
-    background-color: #34495e;
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    padding: 10px;
-    min-width: 220px;
+  background-color: #34495e;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  padding: 10px;
+  min-width: 220px;
 }
 
 .custom-user-dropdown .dropdown-item {
-    color: #ecf0f1;
-    font-size: 1rem;
-    transition: background-color 0.3s ease;
+  color: #ecf0f1;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
 .custom-user-dropdown .dropdown-item:hover {
-    background-color: #1684BF;
-    color: #fff;
+  background-color: #1684bf;
+  color: #fff;
 }
 
 .dropdown-user-info {
-    padding: 10px;
-    color: #fff;
-    text-align: center;
+  padding: 10px;
+  color: #fff;
+  text-align: center;
 }
 
 .dropdown-user-info p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #bdc3c7;
+  margin: 0;
+  font-size: 0.9rem;
+  color: #bdc3c7;
 }
 
 .avatar-initials {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    background-color: #004F97;
-    color: #ffffff;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-right: 10px;
-    text-transform: uppercase;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #004f97;
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 10px;
+  text-transform: uppercase;
 }
 
 .user-initials-icon {
-    width: 35px;
-    height: 35px;
-    background-color: #004F97;
-    color: white;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  background-color: #004f97;
+  color: white;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 
 @media (max-width: 768px) {
-    .card-custom {
-        margin: 20px;
-    }
+  .card-custom {
+    margin: 20px;
+  }
 }
