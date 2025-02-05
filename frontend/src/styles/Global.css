@@ -1,3 +1,10 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 body {
   background: #f0f2f5;
   font-family: var(--font-dm-sans);

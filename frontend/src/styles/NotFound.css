@@ -1,53 +1,43 @@
 .not-found-container {
+  height: 100vh;
   text-align: center;
-  padding: 80px;
 }
 
 .not-found-container h1 {
+  margin-bottom: 10px;
   font-size: 7rem;
   color: #ff0000;
-  margin-bottom: 20px;
   animation: bounce 1s infinite;
 }
 
 .not-found-container p {
-  font-size: 1.4rem;
-  margin-bottom: 30px;
-  color: #343a40;
+  font-size: 1.5rem;
+  color: #000000;
 }
 
-.custom-button {
-  background-color: #0056b3;
-  color: white;
+.not-found-button {
   padding: 12px 25px;
+  background-color: #081a89;
+  color: white;
   border: none;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.custom-button:hover {
-  background-color: #004b99;
+.not-found-button:hover {
+  background-color: #0056b3;
   transform: scale(1.05);
 }
 
-.custom-button:active {
+.not-found-button:active {
   transform: scale(1);
 }
 
-.custom-button:disabled {
-  background-color: #6c757d;
-  cursor: not-allowed;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
+@media (max-width: 430px) {
+  .not-found-container {
+    padding: 0 15px;
   }
 }
