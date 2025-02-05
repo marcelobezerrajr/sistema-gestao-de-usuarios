@@ -1,0 +1,13 @@
+:root {
+  /* FONT */
+  --font-dm-sans: "DM Sans", sans-serif;
+
+  /* CARD */
+  --border-radius: 15px;
+  --card-bg: #fff;
+
+  /* ERROR */
+  --error-bg: #f8d7da;
+  --error-border: 1px solid #f5c6cb;
+  --error-text: #721c24;
+}

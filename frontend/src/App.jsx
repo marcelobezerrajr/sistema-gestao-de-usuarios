@@ -1,7 +1,9 @@
 import React from "react";
 import { MainProvider } from "./context/MainContext";
 import Routes from "./routes";
-import "./styles/Reset.css";
+import "normalize.css";
+import "./styles/global.css";
+import "./styles/vars.css";
 
 const App = () => {
   return (
