@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "../styles/NotFound.css";
+import "../styles/NotFoundPage.css";
 
 const NotFoundPage = () => {
   const navigate = useNavigate();

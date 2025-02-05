@@ -3,6 +3,16 @@
   text-align: center;
 }
 
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .not-found-container h1 {
   margin-bottom: 10px;
   font-size: 7rem;
