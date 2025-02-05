@@ -4,7 +4,6 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import logo from "../assets/logo_marcelo_developer.png";
 import useLogin from "../hooks/useLogin";
 import "../styles/LoginPage.css";
-import "../styles/vars.css";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -34,7 +33,7 @@ const LoginPage = () => {
           </Card.Header>
           <Card.Body className="login-card-body">
             {error && (
-              <Alert className="login-alert" variant="danger">
+              <Alert className="login-alert-error" variant="danger">
                 {error}
               </Alert>
             )}

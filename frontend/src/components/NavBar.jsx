@@ -9,21 +9,21 @@ import {
   NavDropdown,
   Spinner,
 } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { CustomersContext } from "../context/CustomersContext";
-import logo from "../assets/logo_marcelo_desenvolvedor.png";
+import logo from "../assets/logo_marcelo_developer.png";
 import "../styles/NavBar.css";
 
-function NavBar() {
+const NavBar = () => {
   const [search, setSearch] = useState("");
-  const [customers, setCustomers] = useContext(CustomersContext);
+  const { customers, setCustomers } = useContext(CustomersContext);
   const [originalCustomers, setOriginalCustomers] = useState([]);
   const [loading, setLoading] = useState(false);
   const [userName, setUserName] = useState("Usuário");
   const [userUsername, setUserUsername] = useState("Username");
   const [userEmail, setUserEmail] = useState(null);
   const [userPermission, setUserPermission] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUserName = localStorage.getItem("user_name") || "Usuário";
@@ -70,7 +70,7 @@ function NavBar() {
     localStorage.removeItem("user_name");
     localStorage.removeItem("user_username");
     localStorage.removeItem("user_email");
-    history.push("/login");
+    navigate("/login");
   };
 
   const getInitials = (name) => {
@@ -168,6 +168,6 @@ function NavBar() {
       </Navbar.Collapse>
     </Navbar>
   );
-}
+};
 
 export default NavBar;

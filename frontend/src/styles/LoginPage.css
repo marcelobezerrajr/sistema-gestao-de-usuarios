@@ -47,6 +47,12 @@
   border-radius: var(--border-radius);
   box-shadow: var(--box-shadow);
   overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+  transform: scale(1.02);
+  box-shadow: var(--box-shadow);
 }
 
 .login-card-header {
@@ -148,9 +154,10 @@
   background-color: #081a89;
 }
 
-.login-alert {
+.login-alert-error {
   background-color: var(--error-bg);
   border: var(--error-border);
+  border-radius: var(--error-border-radius);
   color: var(--error-text);
   text-align: center;
   padding: 10px;

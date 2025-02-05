@@ -29,14 +29,21 @@ const ResetPasswordPage = () => {
   }, [token]);
 
   const validatePassword = (password) => {
-    if (password.length < 6) return "A Senha deve ter pelo menos 6 caracteres.";
-    if (!/[A-Z]/.test(password))
-      return "A Senha deve conter uma letra maiúscula.";
-    if (!/[a-z]/.test(password))
-      return "A Senha deve conter uma letra minúscula.";
-    if (!/[0-9]/.test(password)) return "A Senha deve conter um número.";
-    if (!/[!@#$%^&*]/.test(password))
-      return "A Senha deve conter um caractere especial.";
+    if (password.length < 6) {
+      return "A senha deve ter pelo menos 6 caracteres";
+    }
+    if (!/[A-Z]/.test(password)) {
+      return "A senha deve conter pelo menos uma letra maiúscula";
+    }
+    if (!/[a-z]/.test(password)) {
+      return "A senha deve conter pelo menos uma letra minúscula";
+    }
+    if (!/\d/.test(password)) {
+      return "A senha deve conter pelo menos um número";
+    }
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      return "A senha deve conter pelo menos um caractere especial";
+    }
     return null;
   };
 

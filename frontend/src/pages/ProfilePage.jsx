@@ -8,7 +8,7 @@ const getInitials = (name) => {
   return name && name.length > 0 ? name.charAt(0).toUpperCase() : "U";
 };
 
-function ProfilePage() {
+const ProfilePage = () => {
   const [userName, setUserName] = useState("Usuário");
   const [userEmail, setUserEmail] = useState("");
 
@@ -77,6 +77,6 @@ function ProfilePage() {
       </Card>
     </Container>
   );
-}
+};
 
 export default ProfilePage;
