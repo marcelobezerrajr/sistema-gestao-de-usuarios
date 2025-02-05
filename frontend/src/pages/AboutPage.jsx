@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Row, Col, Card, Button, Image } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faChevronUp } from "@fortawesome/free-solid-svg-icons";
-import logo from "../assets/logo_marcelo_desenvolvedor.png";
+import logo from "../assets/logo_marcelo_developer.png";
 import "../styles/About.css";
 
 const AboutPage = () => {

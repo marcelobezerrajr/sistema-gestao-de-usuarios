@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Card, Alert, Spinner, Button } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import logo from "../assets/logo_marcelo_desenvolvedor.png";
+import logo from "../assets/logo_marcelo_developer.png";
 import useLogin from "../hooks/useLogin";
 import "../styles/LoginPage.css";
 import "../styles/vars.css";
@@ -26,7 +26,7 @@ const LoginPage = () => {
     <div className="login">
       <div className="login-container">
         <div className="logo">
-          <img src={logo} alt="Logo Marcelo Desenvolvedor" />
+          <img src={logo} alt="Logo Marcelo Developer" />
         </div>
         <Card className="login-card">
           <Card.Header className="login-card-header">

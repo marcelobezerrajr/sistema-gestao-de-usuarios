@@ -5,6 +5,12 @@
   /* CARD */
   --border-radius: 15px;
   --card-bg: #fff;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+  /* SUCESS */
+  --success-bg: #d4edda;
+  --success-border: 1px solid #c3e6cb;
+  --success-text: #155724;
 
   /* ERROR */
   --error-bg: #f8d7da;

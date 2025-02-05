@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
 import RequestPasswordPage from "./pages/RequestPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -20,6 +21,7 @@ const AppRoutes = () => {
           path="/request-password"
           element={<RequestPasswordPage />}
         />
+        <Route exact path="/reset-password" element={<ResetPasswordPage />} />
         <Route exact path="/invalid-token" element={<InvalidTokenPage />} />
         <Route element={<PrivateRoute />}>
           <Route exact path="/profile" element={<ProfilePage />} />

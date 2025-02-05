@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Card, Alert, Spinner, Button } from "react-bootstrap";
 import useRequestPassword from "../hooks/useRequestPassword";
-import logo from "../assets/logo_marcelo_desenvolvedor.png";
+import logo from "../assets/logo_marcelo_developer.png";
 import "../styles/RequestPasswordPage.css";
 
 const RequestPasswordPage = () => {
@@ -18,7 +18,7 @@ const RequestPasswordPage = () => {
     <div className="request">
       <div className="request-container">
         <div className="logo">
-          <img src={logo} alt="Logo Marcelo Desenvolvedor" />
+          <img src={logo} alt="Logo Marcelo Developer" />
         </div>
         <Card className="request-card">
           <Card.Header className="request-card-header">
