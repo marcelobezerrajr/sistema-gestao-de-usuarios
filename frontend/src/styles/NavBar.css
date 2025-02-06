@@ -13,7 +13,7 @@
 }
 
 .navbar-left span {
-  margin-left: 10px;
+  margin-left: 15px;
   font-size: 1.3rem;
   font-weight: bold;
   color: #081a89;
@@ -26,7 +26,7 @@
 }
 
 .navbar-logo {
-  margin: 0px 10px 0px 10px;
+  margin: 0px 10px;
   width: 130px;
   transition: transform 0.3s ease;
 }
@@ -39,9 +39,8 @@
 .navbar-nav {
   margin-left: 20px;
 }
-
 .navbar-nav a {
-  color: #1684bf;
+  color: #004f98;
   margin: 0 10px;
   font-size: 1.1rem;
   font-weight: bold;
@@ -50,7 +49,7 @@
 }
 
 .navbar-nav a:hover {
-  color: #004f98;
+  color: #1684bf;
   transform: scale(1.1);
 }
 
@@ -105,11 +104,21 @@
   animation: fadeInZoom 0.3s ease;
 }
 
+.user-dropdown-menu hr {
+  border: 0;
+  height: 1px;
+  background-color: #bdc3c7;
+  margin: 1px;
+  width: 100%;
+}
+
 .user-dropdown-menu .dropdown-item {
   color: #ecf0f1;
   font-size: 1rem;
   padding: 10px 15px;
   transition: background-color 0.3s ease;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .user-dropdown-menu .dropdown-item:hover {

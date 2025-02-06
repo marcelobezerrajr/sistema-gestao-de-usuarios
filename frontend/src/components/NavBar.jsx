@@ -9,7 +9,6 @@ import "../styles/NavBar.css";
 const NavBar = () => {
   const { users, setUsers } = useUser();
   const [originalUsers, setOriginalUsers] = useState([]);
-  const [userName, setUserName] = useState("Usuário");
   const [userUsername, setUserUsername] = useState("Username");
   const [userEmail, setUserEmail] = useState(null);
   const [userPermission, setUserPermission] = useState(null);
@@ -52,13 +51,9 @@ const NavBar = () => {
   }, [dropdownOpen]);
 
   const handleLogout = () => {
-    [
-      "access_token",
-      "user_permission",
-      "user_name",
-      "user_username",
-      "user_email",
-    ].forEach((item) => localStorage.removeItem(item));
+    ["access_token", "user_permission", "user_username", "user_email"].forEach(
+      (item) => localStorage.removeItem(item)
+    );
     navigate("/login");
   };
 
@@ -91,14 +86,14 @@ const NavBar = () => {
               </strong>
               {userEmail && <p>{userEmail}</p>}
             </div>
-            <NavDropdown.Divider />
+            <hr />
             <NavDropdown.Item as={Link} to="/perfil">
               <FaUser className="me-2" /> Perfil
             </NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/change-password">
               <FaKey className="me-2" /> Change Password
             </NavDropdown.Item>
-            <NavDropdown.Divider />
+            <hr />
             <NavDropdown.Item onClick={handleLogout}>
               <FaSignOutAlt className="me-2" /> Logout
             </NavDropdown.Item>

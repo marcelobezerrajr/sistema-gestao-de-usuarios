@@ -19,7 +19,7 @@ const FilterComponent = ({
         onChange={(e) => onFilterChange(e.target.value)}
         className="filter-select"
       >
-        <option value="">Todos</option>
+        <option value="">All</option>
         {filterOptions.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

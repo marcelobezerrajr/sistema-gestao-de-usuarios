@@ -1,4 +1,5 @@
 import React from "react";
+import "../styles/TableRow.css";
 
 const TableRow = ({
   id_user,
@@ -24,19 +25,13 @@ const TableRow = ({
       <td>{telephone}</td>
       <td>{permission}</td>
       <td>
-        <button
-          onClick={() => handleView(id_user)}
-          className="btn btn-outline-success btn-sm mr-2"
-        >
+        <button onClick={() => handleView(id_user)} className="button-view">
           View
         </button>
 
         {(userPermission === "Admin" ||
           (userPermission === "User" && permission !== "Admin")) && (
-          <button
-            onClick={() => handleUpdate(id_user)}
-            className="btn btn-outline-info btn-sm ml-1 mr-2"
-          >
+          <button onClick={() => handleUpdate(id_user)} className="button-edit">
             Update
           </button>
         )}
@@ -44,7 +39,7 @@ const TableRow = ({
         {userPermission === "Admin" && (
           <button
             onClick={() => handleDelete(id_user)}
-            className="btn btn-outline-danger btn-sm mr-2"
+            className="button-delete"
           >
             Delete
           </button>

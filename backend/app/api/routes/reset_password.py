@@ -65,7 +65,7 @@ def forgot_password(request: EmailRequest, db: Session = Depends(get_db)):
             detail="Email not found",
         )
 
-    token = create_reset_token(str(user.id))
+    token = create_reset_token(str(user.id_user))
     user.reset_password_token = token
     user.reset_token_expires_at = datetime.utcnow() + timedelta(
         hours=RESET_TOKEN_EXPIRY_HOURS
@@ -108,7 +108,7 @@ def verify_reset_token(request: TokenRequest, db: Session = Depends(get_db)):
             detail="Invalid or expired token",
         )
 
-    user = db.query(User).filter(User.id == user_id).first()
+    user = db.query(User).filter(User.id_user == user_id).first()
     if (
         not user
         or user.reset_password_token != token
@@ -140,7 +140,7 @@ def reset_password(request: ResetPasswordRequest, db: Session = Depends(get_db))
             detail="Invalid or expired token",
         )
 
-    user = db.query(User).filter(User.id == user_id).first()
+    user = db.query(User).filter(User.id_user == user_id).first()
     if (
         not user
         or user.reset_password_token != request.token

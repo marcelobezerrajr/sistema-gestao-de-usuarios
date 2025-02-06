@@ -60,7 +60,6 @@ def login_for_access_token(
         "access_token": access_token,
         "token_type": "bearer",
         "user_username": user.username,
-        "user_name": user.name,
         "user_email": user.email,
         "user_permission": user.permission,
     }
@@ -96,7 +95,6 @@ def read_users_me(token: str = Depends(oauth2_scheme), db: Session = Depends(get
 
     return {
         "email": user.email,
-        "name": user.name,
         "permission": user.permission,
         "username": user.username,
     }
