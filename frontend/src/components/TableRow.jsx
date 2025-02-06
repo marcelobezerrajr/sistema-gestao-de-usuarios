@@ -1,48 +1,52 @@
 import React from "react";
-import "../styles/TableRow.css";
 
-const TableRow = ({ rowData, columns, actions, idField, secondaryIdField }) => {
+const TableRow = ({
+  id_user,
+  username,
+  name,
+  last_name,
+  email,
+  telephone,
+  permission,
+  handleDelete,
+  handleUpdate,
+  handleView,
+}) => {
   const userPermission = localStorage.getItem("user_permission");
 
   return (
     <tr>
-      {columns.map((col) => (
-        <td key={col}>{rowData[col]}</td>
-      ))}
-
+      <td>{id_user}</td>
+      <td>{username}</td>
+      <td>{name}</td>
+      <td>{last_name}</td>
+      <td>{email}</td>
+      <td>{telephone}</td>
+      <td>{permission}</td>
       <td>
-        {actions.view && (
+        <button
+          onClick={() => handleView(id_user)}
+          className="btn btn-outline-success btn-sm mr-2"
+        >
+          View
+        </button>
+
+        {(userPermission === "Admin" ||
+          (userPermission === "User" && permission !== "Admin")) && (
           <button
-            onClick={() => {
-              if (secondaryIdField) {
-                actions.view(rowData[idField], rowData[secondaryIdField]);
-              } else {
-                actions.view(rowData[idField]);
-              }
-            }}
-            className="custom-button-view"
+            onClick={() => handleUpdate(id_user)}
+            className="btn btn-outline-info btn-sm ml-1 mr-2"
           >
-            Ver
+            Update
           </button>
         )}
 
-        {actions.update &&
-          (userPermission === "Admin" ||
-            (userPermission === "User" && rowData.permission !== "Admin")) && (
-            <button
-              onClick={() => actions.update(rowData[idField])}
-              className="custom-button-edit"
-            >
-              Editar
-            </button>
-          )}
-
-        {actions.delete && userPermission === "Admin" && (
+        {userPermission === "Admin" && (
           <button
-            onClick={() => actions.delete(rowData[idField])}
-            className="custom-button-delete"
+            onClick={() => handleDelete(id_user)}
+            className="btn btn-outline-danger btn-sm mr-2"
           >
-            Deletar
+            Delete
           </button>
         )}
       </td>

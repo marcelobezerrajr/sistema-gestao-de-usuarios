@@ -27,10 +27,9 @@ const AppRoutes = () => {
         <Route exact path="/reset-password" element={<ResetPasswordPage />} />
         <Route exact path="/invalid-token" element={<InvalidTokenPage />} />
         <Route element={<PrivateRoute />}>
-          <Route element={<MainLayout />}>
-            <Route exact path="/profile" element={<ProfilePage />} />
-            <Route exact path="/about" element={<AboutPage />} />
-          </Route>
+          <Route exact path="/profile" element={<ProfilePage />} />
+          <Route exact path="/about" element={<AboutPage />} />
+          <Route element={<MainLayout />}></Route>
         </Route>
         <Route exact path="*" element={<NotFoundPage />} />
       </Routes>
