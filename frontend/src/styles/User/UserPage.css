@@ -1,19 +1,8 @@
-@keyframes fadeInZoom {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 .table {
   margin: auto;
-  padding: 4px;
+  padding: 1px;
   max-width: 100%;
-  animation: fadeInZoom 0.8s ease-out;
+  animation: var(--fade-in-zoom);
 }
 
 .header-section {

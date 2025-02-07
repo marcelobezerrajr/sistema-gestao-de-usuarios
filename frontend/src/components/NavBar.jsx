@@ -87,8 +87,8 @@ const NavBar = () => {
               {userEmail && <p>{userEmail}</p>}
             </div>
             <hr />
-            <NavDropdown.Item as={Link} to="/perfil">
-              <FaUser className="me-2" /> Perfil
+            <NavDropdown.Item as={Link} to="/profile">
+              <FaUser className="me-2" /> Profile
             </NavDropdown.Item>
             <NavDropdown.Item as={Link} to="/change-password">
               <FaKey className="me-2" /> Change Password

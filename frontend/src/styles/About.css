@@ -5,6 +5,7 @@
   justify-content: center;
   padding: 40px 20px;
   position: relative;
+  animation: var(--fade-in-zoom);
 }
 
 .about-card {
@@ -17,6 +18,10 @@
   margin-bottom: 60px;
   border: none;
   transition: transform 0.3s ease-in-out;
+}
+
+.viper-logo {
+  width: 300px;
 }
 
 .about-card:hover {

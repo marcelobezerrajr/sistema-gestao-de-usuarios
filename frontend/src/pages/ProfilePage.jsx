@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Form, Col, Row, Container, Card } from "react-bootstrap";
 import { FaUserCircle, FaEdit } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import MainLayout from "../layouts/MainLayout";
 import "../styles/Profile.css";
 
 const getInitials = (name) => {
@@ -21,61 +22,63 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <Container className="profile-container">
-      <Card className="profile-card">
-        <Card.Body>
-          <div className="profile-header">
-            <div className="profile-avatar">
-              <FaUserCircle size={120} className="default-avatar" />
-              <div className="avatar-initials-large">
-                {getInitials(userName)}
+    <MainLayout>
+      <Container className="profile-container">
+        <Card className="profile-card">
+          <Card.Body>
+            <div className="profile-header">
+              <div className="profile-avatar">
+                <FaUserCircle size={120} className="default-avatar" />
+                <div className="avatar-initials-large">
+                  {getInitials(userName)}
+                </div>
+              </div>
+              <div className="profile-info">
+                <h4>{userName}</h4>
+                <p>{userEmail}</p>
+                <Button as={Link} to="/editprofile" className="btn-action">
+                  <FaEdit className="icon" /> Editar Perfil
+                </Button>
               </div>
             </div>
-            <div className="profile-info">
-              <h4>{userName}</h4>
-              <p>{userEmail}</p>
-              <Button as={Link} to="/editprofile" className="btn-action">
-                <FaEdit className="icon" /> Editar Perfil
-              </Button>
-            </div>
-          </div>
-        </Card.Body>
-      </Card>
+          </Card.Body>
+        </Card>
 
-      <Card className="preferences-card mt-4">
-        <Card.Body>
-          <h3 className="preferences-title">Preferências</h3>
-          <Form>
-            <Row>
-              <Col md={6}>
-                <Form.Group controlId="formLanguage">
-                  <Form.Label>Idioma</Form.Label>
-                  <Form.Control as="select" className="form-select">
-                    <option>Português</option>
-                    <option>Inglês</option>
-                  </Form.Control>
-                </Form.Group>
-              </Col>
-              <Col md={6}>
-                <Form.Group controlId="formTheme">
-                  <Form.Label>Tema</Form.Label>
-                  <Form.Control as="select" className="form-select">
-                    <option>Claro</option>
-                    <option>Escuro</option>
-                  </Form.Control>
-                </Form.Group>
-              </Col>
-            </Row>
-            <Button type="submit" className="save-preferences">
-              Salvar Preferências
-            </Button>
-          </Form>
-          <div className="back-login-profile">
-            <a href="/customers">Back to Home</a>
-          </div>
-        </Card.Body>
-      </Card>
-    </Container>
+        <Card className="preferences-card mt-4">
+          <Card.Body>
+            <h3 className="preferences-title">Preferências</h3>
+            <Form>
+              <Row>
+                <Col md={6}>
+                  <Form.Group controlId="formLanguage">
+                    <Form.Label>Idioma</Form.Label>
+                    <Form.Control as="select" className="form-select">
+                      <option>Português</option>
+                      <option>Inglês</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
+                <Col md={6}>
+                  <Form.Group controlId="formTheme">
+                    <Form.Label>Tema</Form.Label>
+                    <Form.Control as="select" className="form-select">
+                      <option>Claro</option>
+                      <option>Escuro</option>
+                    </Form.Control>
+                  </Form.Group>
+                </Col>
+              </Row>
+              <Button type="submit" className="save-preferences">
+                Salvar Preferências
+              </Button>
+            </Form>
+            <div className="back-login-profile">
+              <a href="/customers">Back to Home</a>
+            </div>
+          </Card.Body>
+        </Card>
+      </Container>
+    </MainLayout>
   );
 };
 

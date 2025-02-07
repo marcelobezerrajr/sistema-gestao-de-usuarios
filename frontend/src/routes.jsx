@@ -6,6 +6,7 @@ import RequestPasswordPage from "./pages/RequestPasswordPage";
 import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import UserPage from "./pages/User/UserPage";
+import ViewUserPage from "./pages/User/ViewUserPage";
 import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
 import NotFoundPage from "./pages/NotFoundPage";
@@ -27,6 +28,7 @@ const AppRoutes = () => {
         <Route exact path="/invalid-token" element={<InvalidTokenPage />} />
         <Route element={<PrivateRoute />}>
           <Route exact path="/users" element={<UserPage />} />
+          <Route exact path="/user/view/:id_user" element={<ViewUserPage />} />
           <Route
             exact
             path="/change-password"
