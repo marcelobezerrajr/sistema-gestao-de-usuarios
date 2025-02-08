@@ -7,6 +7,7 @@ import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import UserPage from "./pages/User/UserPage";
 import AddUserPage from "./pages/User/AddUserPage";
+import UpdateUserPage from "./pages/User/UpdateUserPage";
 import ViewUserPage from "./pages/User/ViewUserPage";
 import ProfilePage from "./pages/ProfilePage";
 import AboutPage from "./pages/AboutPage";
@@ -30,6 +31,11 @@ const AppRoutes = () => {
         <Route element={<PrivateRoute />}>
           <Route exact path="/users" element={<UserPage />} />
           <Route exact path="/user/add" element={<AddUserPage />} />
+          <Route
+            exact
+            path="/user/update/:id_user"
+            element={<UpdateUserPage />}
+          />
           <Route exact path="/user/view/:id_user" element={<ViewUserPage />} />
           <Route
             exact

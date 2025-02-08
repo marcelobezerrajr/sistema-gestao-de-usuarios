@@ -1,11 +1,11 @@
-.add-user-div {
+.update-user-div {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 85vh;
+  height: 70vh;
 }
 
-.add-user-container {
+.update-user-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -13,7 +13,7 @@
   animation: var(--fade-in-zoom);
 }
 
-.add-user-card {
+.update-user-card {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
@@ -25,56 +25,50 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.add-user-card:hover {
+.update-user-card:hover {
   transform: scale(1.02);
   box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-.add-user-card-header {
+.update-user-card-header {
   padding: 10px;
   color: #fff;
   background-color: #081a89;
   text-align: center;
 }
 
-.add-user-card-header h4 {
+.update-user-card-header h4 {
   margin: 15px;
   font-size: 1.8rem;
   font-weight: bold;
 }
 
-.add-user-card-body {
+.update-user-card-body {
   padding: 20px;
   display: flex;
   flex-direction: column;
 }
 
-.add-user-form-group {
+.update-user-form-group {
   width: 100%;
 }
 
-.add-user-form-group.full-width {
-  grid-column: span 2;
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-}
-
-.add-user-form-grid {
+.update-user-form-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
+  align-items: center;
 }
 
-.add-user-form-label {
+.update-user-form-label {
   margin-left: 5px;
   color: #004f98;
   font-size: 1.1rem;
   font-weight: bold;
 }
 
-.add-user-form-control-custom {
-  width: 94%;
+.update-user-form-control-custom {
+  width: 93%;
   margin: 10px 0px 10px 0px;
   padding: 15px 10px 15px;
   border: 1px solid #ced4da;
@@ -84,21 +78,21 @@
   transition: border-color 0.3s ease;
 }
 
-.add-user-form-control-custom::placeholder {
+.update-user-form-control-custom::placeholder {
   color: #1684bf;
 }
 
-.add-user-form-control-custom:focus {
+.update-user-form-control-custom:focus {
   border-color: #1684bf;
   outline: none;
 }
 
-.add-user-password-container {
+.update-user-password-container {
   margin-bottom: 5px;
   position: relative;
 }
 
-.add-user-password-toggle {
+.update-user-password-toggle {
   position: absolute;
   top: 55%;
   right: 10px;
@@ -110,28 +104,30 @@
   transition: color 0.3s;
 }
 
-.add-user-password-toggle:hover {
+.update-user-password-toggle:hover {
   color: #081a89;
 }
 
-.add-user-form-select {
-  padding: 10px;
-  border-radius: 8px;
+.update-user-form-select {
+  width: 100%;
+  margin: 10px 0px 10px 0px;
+  padding: 15px 10px 15px;
   border: 1px solid #ced4da;
-  transition: border-color 0.3s;
-  color: #1684bf;
+  border-radius: 8px;
   font-size: 0.9rem !important;
-  margin: 0 0 20px 10px;
+  color: #1684bf;
+  transition: border-color 0.3s;
 }
 
-.add-user-form-select:focus {
+.update-user-form-select:focus {
   border-color: #1684bf;
   outline: none;
 }
 
-.add-user-button-container {
+.update-user-button-container {
   width: 100%;
   padding: 12px;
+  margin-top: 10px;
   background-color: #0056b3;
   color: #fff;
   border: none;
@@ -141,17 +137,17 @@
   transition: background-color 0.3s;
 }
 
-.add-user-button-container:hover {
+.update-user-button-container:hover {
   background-color: #081a89;
 }
 
-.add-user-spinner {
+.update-user-spinner {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.add-user-alert-error {
+.update-user-alert-error {
   background-color: var(--error-bg);
   border: var(--error-border);
   border-radius: var(--error-border-radius);
@@ -161,7 +157,7 @@
   margin-bottom: 15px;
 }
 
-.add-user-alert-success {
+.update-user-alert-success {
   background-color: var(--success-bg);
   border: var(--success-border);
   border-radius: var(--success-border-radius);
@@ -172,11 +168,11 @@
 }
 
 @media (max-width: 430px) {
-  .add-user-container {
+  .update-user-container {
     padding: 0 15px;
   }
 
-  .add-user-form-grid {
+  .update-user-form-grid {
     grid-template-columns: 1fr;
   }
 }

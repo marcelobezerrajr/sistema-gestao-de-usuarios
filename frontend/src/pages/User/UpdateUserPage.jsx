@@ -9,19 +9,20 @@ import {
   Col,
   Container,
 } from "react-bootstrap";
-import { FaSave, FaEye, FaEyeSlash } from "react-icons/fa";
+import { FaSave } from "react-icons/fa";
 import useUser from "../../hooks/useUser";
 import MainLayout from "../../layouts/MainLayout";
-import "../../styles/User/AddUserPage.css";
+import { useParams } from "react-router-dom";
+import "../../styles/User/UpdateUserPage.css";
 
-const AddUserPage = () => {
-  const { addUser } = useUser();
-  const [usuarioData, setUsuarioData] = useState({
+const UpdateUserPage = () => {
+  const { id_user } = useParams();
+  const { getUser, updateUserData } = useUser();
+  const [userData, setuserData] = useState({
     username: "",
     name: "",
     last_name: "",
     email: "",
-    hashed_password: "",
     telephone: "",
     permission: "",
   });
@@ -29,34 +30,39 @@ const AddUserPage = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
   const [userPermission, setUserPermission] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const permission = localStorage.getItem("user_permission");
     setUserPermission(permission || "");
   }, []);
 
+  useEffect(() => {
+    if (!id_user) {
+      setErrors({ form: "User ID not defined." });
+      return;
+    }
+
+    const fetchUsuario = async () => {
+      setLoading(true);
+      try {
+        const userData = await getUser(id_user);
+        setuserData(userData);
+      } catch (error) {
+        setErrors({ form: "Error loading user data." });
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchUsuario();
+  }, [id_user, getUser]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUsuarioData({
-      ...usuarioData,
+    setuserData({
+      ...userData,
       [name]: value,
     });
     setErrors({ ...errors, [name]: null });
-  };
-
-  const validatePassword = (password) => {
-    if (password.length < 6)
-      return "Password must be at least 6 characters long.";
-    if (!/\d/.test(password))
-      return "The password must contain at least one digit.";
-    if (!/[A-Z]/.test(password))
-      return "The password should contain at least 1 uppercase character.";
-    if (!/[a-z]/.test(password))
-      return "The password must contain at least one lowercase letter.";
-    if (!/[!@#$%^&*()-_=+[\]{};:'\",<.>/?\\|`~]/.test(password))
-      return "The password must contain at least one special character.";
-    return null;
   };
 
   const validateEmail = (value) => {
@@ -73,19 +79,16 @@ const AddUserPage = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!usuarioData.username) newErrors.username = "Username is mandatory";
-    if (!usuarioData.name) newErrors.name = "Name is mandatory";
-    if (!usuarioData.last_name) newErrors.last_name = "last name is mandatory";
-    if (!usuarioData.permission)
+    if (!userData.username) newErrors.username = "Username is mandatory";
+    if (!userData.name) newErrors.name = "Name is mandatory";
+    if (!userData.last_name) newErrors.last_name = "last name is mandatory";
+    if (!userData.permission)
       newErrors.permission = "Type of Permission is mandatory";
 
-    const passwordError = validatePassword(usuarioData.hashed_password);
-    if (passwordError) newErrors.hashed_password = passwordError;
-
-    const emailError = validateEmail(usuarioData.email);
+    const emailError = validateEmail(userData.email);
     if (emailError) newErrors.email = emailError;
 
-    const telephoneError = validateTelephone(usuarioData.telephone);
+    const telephoneError = validateTelephone(userData.telephone);
     if (telephoneError) newErrors.telephone = telephoneError;
 
     return newErrors;
@@ -104,31 +107,19 @@ const AddUserPage = () => {
       return;
     }
 
-    if (userPermission !== "Admin" && usuarioData.permission === "Admin") {
+    if (userPermission !== "Admin" && userData.permission === "Admin") {
       setErrors({
-        permission: "Você não tem permissão para atribuir o nível Admin.",
+        permission: "You do not have permission to assign the Admin level.",
       });
       setLoading(false);
       return;
     }
 
     try {
-      await addUser({
-        ...usuarioData,
-        hashed_password: usuarioData.hashed_password,
-      });
-      setSuccess("Usuário adicionado com sucesso!");
-      setUsuarioData({
-        username: "",
-        name: "",
-        last_name: "",
-        email: "",
-        hashed_password: "",
-        telephone: "",
-        permission: "",
-      });
+      await updateUserData(id_user, userData);
+      setSuccess("User updated successfully!");
     } catch (error) {
-      setErrors({ form: "Erro ao adicionar o usuário. Tente novamente." });
+      setErrors({ form: "Error updating user. Try again." });
     } finally {
       setLoading(false);
     }
@@ -154,46 +145,47 @@ const AddUserPage = () => {
 
   return (
     <MainLayout>
-      <div className="add-user-div">
-        <Container className="add-user-container">
+      <div className="update-user-div">
+        <Container className="update-user-container">
           <Row className="justify-content-md-center">
             <Col md={12} lg={10}>
-              <Card className="add-user-card">
-                <Card.Header className="add-user-card-header">
-                  <h4>
-                    <b>+</b> Add User
-                  </h4>
+              <Card className="update-user-card">
+                <Card.Header className="update-user-card-header">
+                  <h4>Update User</h4>
                 </Card.Header>
-                <Card.Body className="add-user-card-body">
+                <Card.Body className="update-user-card-body">
                   {loading && (
-                    <div className="add-user-spinner">
+                    <div className="update-user-spinner">
                       <Spinner animation="border" />
                     </div>
                   )}
                   {errors.form && (
-                    <Alert variant="danger" className="add-user-alert-error">
+                    <Alert variant="danger" className="update-user-alert-error">
                       {errors.form}
                     </Alert>
                   )}
                   {success && (
-                    <Alert variant="success" className="add-user-alert-success">
+                    <Alert
+                      variant="success"
+                      className="update-user-alert-success"
+                    >
                       {success}
                     </Alert>
                   )}
                   <Form onSubmit={handleSubmit}>
-                    <div className="add-user-form-grid">
+                    <div className="update-user-form-grid">
                       <Form.Group
-                        className="add-user-form-group"
+                        className="update-user-form-group"
                         controlId="username"
                       >
-                        <Form.Label className="add-user-form-label">
+                        <Form.Label className="update-user-form-label">
                           Username
                         </Form.Label>
                         <Form.Control
-                          className="add-user-form-control-custom"
+                          className="update-user-form-control-custom"
                           type="text"
                           name="username"
-                          value={usuarioData.username}
+                          value={userData.username}
                           onChange={handleChange}
                           isInvalid={!!errors.username}
                           placeholder="Enter username"
@@ -204,17 +196,17 @@ const AddUserPage = () => {
                       </Form.Group>
 
                       <Form.Group
-                        className="add-user-form-group"
+                        className="update-user-form-group"
                         controlId="name"
                       >
-                        <Form.Label className="add-user-form-label">
+                        <Form.Label className="update-user-form-label">
                           Name
                         </Form.Label>
                         <Form.Control
-                          className="add-user-form-control-custom"
+                          className="update-user-form-control-custom"
                           type="text"
                           name="name"
-                          value={usuarioData.name}
+                          value={userData.name}
                           onChange={handleChange}
                           isInvalid={!!errors.name}
                           placeholder="Enter name"
@@ -225,17 +217,17 @@ const AddUserPage = () => {
                       </Form.Group>
 
                       <Form.Group
-                        className="add-user-form-group"
+                        className="update-user-form-group"
                         controlId="last_name"
                       >
-                        <Form.Label className="add-user-form-label">
+                        <Form.Label className="update-user-form-label">
                           Last Name
                         </Form.Label>
                         <Form.Control
-                          className="add-user-form-control-custom"
+                          className="update-user-form-control-custom"
                           type="text"
                           name="last_name"
-                          value={usuarioData.last_name}
+                          value={userData.last_name}
                           onChange={handleChange}
                           isInvalid={!!errors.last_name}
                           placeholder="Enter last name"
@@ -246,17 +238,17 @@ const AddUserPage = () => {
                       </Form.Group>
 
                       <Form.Group
-                        className="add-user-form-group"
+                        className="update-user-form-group"
                         controlId="email"
                       >
-                        <Form.Label className="add-user-form-label">
+                        <Form.Label className="update-user-form-label">
                           Email
                         </Form.Label>
                         <Form.Control
-                          className="add-user-form-control-custom"
+                          className="update-user-form-control-custom"
                           type="text"
                           name="email"
-                          value={usuarioData.email}
+                          value={userData.email}
                           onChange={handleChange}
                           isInvalid={!!errors.email}
                           placeholder="Enter email"
@@ -267,48 +259,17 @@ const AddUserPage = () => {
                       </Form.Group>
 
                       <Form.Group
-                        className="add-user-form-group"
-                        controlId="hashed_password"
-                      >
-                        <Form.Label className="add-user-form-label">
-                          Password
-                        </Form.Label>
-                        <div className="add-user-password-container">
-                          <Form.Control
-                            className="add-user-form-control-custom"
-                            type={showPassword ? "text" : "password"}
-                            name="hashed_password"
-                            value={usuarioData.hashed_password}
-                            onChange={handleChange}
-                            isInvalid={!!errors.hashed_password}
-                            placeholder="Enter password"
-                            required
-                          />
-                          <button
-                            type="button"
-                            className="add-user-password-toggle"
-                            onClick={() => setShowPassword(!showPassword)}
-                          >
-                            {showPassword ? <FaEye /> : <FaEyeSlash />}
-                          </button>
-                          <Form.Control.Feedback type="invalid">
-                            {errors.hashed_password}
-                          </Form.Control.Feedback>
-                        </div>
-                      </Form.Group>
-
-                      <Form.Group
-                        className="add-user-form-group"
+                        className="update-user-form-group"
                         controlId="telephone"
                       >
-                        <Form.Label className="add-user-form-label">
+                        <Form.Label className="update-user-form-label">
                           Telephone
                         </Form.Label>
                         <Form.Control
-                          className="add-user-form-control-custom"
+                          className="update-user-form-control-custom"
                           type="tel"
                           name="telephone"
-                          value={usuarioData.telephone}
+                          value={userData.telephone}
                           onChange={handleChange}
                           isInvalid={!!errors.telephone}
                           placeholder="Enter telephone"
@@ -319,16 +280,16 @@ const AddUserPage = () => {
                       </Form.Group>
 
                       <Form.Group
-                        className="add-user-form-group full-width"
+                        className="update-user-form-group"
                         controlId="permission"
                       >
-                        <Form.Label className="add-user-form-label">
+                        <Form.Label className="update-user-form-label">
                           Permission
                         </Form.Label>
                         <Form.Select
-                          className="add-user-form-select"
+                          className="update-user-form-select"
                           name="permission"
-                          value={usuarioData.permission}
+                          value={userData.permission}
                           onChange={handleChange}
                           isInvalid={!!errors.permission}
                           required
@@ -344,7 +305,7 @@ const AddUserPage = () => {
 
                     <div className="button-container">
                       <Button
-                        className="add-user-button-container"
+                        className="update-user-button-container"
                         variant="primary"
                         type="submit"
                         disabled={loading}
@@ -364,4 +325,4 @@ const AddUserPage = () => {
   );
 };
 
-export default AddUserPage;
+export default UpdateUserPage;
