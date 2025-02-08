@@ -45,7 +45,7 @@ const UserPage = () => {
   };
 
   const handleAddUser = async () => {
-    navigate(`/user/create`);
+    navigate(`/user/add`);
   };
 
   const handleUpdateUser = async (id_user) => {
