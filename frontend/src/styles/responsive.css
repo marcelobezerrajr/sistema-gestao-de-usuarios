@@ -4,7 +4,9 @@
     width: 90%;
   }
 
-  .login-container {
+  .login-container,
+  .request-container,
+  .reset-container {
     width: 95%;
     padding: 0 20px;
   }

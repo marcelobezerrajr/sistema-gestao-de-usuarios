@@ -4,7 +4,7 @@ import { Card, Form, Alert, Spinner, Button } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import useResetPassword from "../hooks/useResetPassword";
 import logo from "../assets/logo_marcelo_developer.png";
-import "../styles/ResetPasswordPage.css";
+import "../styles/reset-password-page.css";
 
 const ResetPasswordPage = () => {
   const [newPassword, setNewPassword] = useState("");
@@ -29,21 +29,16 @@ const ResetPasswordPage = () => {
   }, [token]);
 
   const validatePassword = (password) => {
-    if (password.length < 6) {
-      return "A senha deve ter pelo menos 6 caracteres";
-    }
-    if (!/[A-Z]/.test(password)) {
-      return "A senha deve conter pelo menos uma letra maiúscula";
-    }
-    if (!/[a-z]/.test(password)) {
-      return "A senha deve conter pelo menos uma letra minúscula";
-    }
-    if (!/\d/.test(password)) {
-      return "A senha deve conter pelo menos um número";
-    }
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      return "A senha deve conter pelo menos um caractere especial";
-    }
+    if (password.length < 6)
+      return "Password must be at least 6 characters long.";
+    if (!/\d/.test(password))
+      return "The password must contain at least one digit.";
+    if (!/[A-Z]/.test(password))
+      return "The password should contain at least 1 uppercase character.";
+    if (!/[a-z]/.test(password))
+      return "The password must contain at least one lowercase letter.";
+    if (!/[!@#$%^&*()-_=+[\]{};:'\",<.>/?\\|`~]/.test(password))
+      return "The password must contain at least one special character.";
     return null;
   };
 
@@ -58,7 +53,7 @@ const ResetPasswordPage = () => {
     }
 
     if (newPassword !== confirmPassword) {
-      setValidationError("As Senhas não coincidem.");
+      setValidationError("Passwords do not match.");
       return;
     }
 
@@ -77,7 +72,7 @@ const ResetPasswordPage = () => {
         </div>
         <Card className="reset-card">
           <Card.Header className="reset-card-header">
-            <h4>Redefinir senha</h4>
+            <h4>Reset password</h4>
           </Card.Header>
           <Card.Body className="reset-card-body">
             {feedback.message && (
@@ -95,11 +90,13 @@ const ResetPasswordPage = () => {
             )}
             <Form onSubmit={handleSubmit}>
               <Form.Group>
-                <Form.Label className="reset-form-label">Nova Senha</Form.Label>
+                <Form.Label className="reset-form-label">
+                  New Password
+                </Form.Label>
                 <div className="reset-password-container">
                   <Form.Control
                     type={showPasswords.newPassword ? "text" : "password"}
-                    placeholder="Nova Senha"
+                    placeholder="Enter new password"
                     value={newPassword}
                     onChange={(e) => {
                       setNewPassword(e.target.value);
@@ -118,12 +115,12 @@ const ResetPasswordPage = () => {
               </Form.Group>
               <Form.Group>
                 <Form.Label className="reset-form-label">
-                  Confirmar Senha
+                  Confirm Password
                 </Form.Label>
                 <div className="reset-password-container">
                   <Form.Control
                     type={showPasswords.confirmPassword ? "text" : "password"}
-                    placeholder="Confirmar Senha"
+                    placeholder="Enter confirm password"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     className="reset-form-control"
@@ -137,7 +134,7 @@ const ResetPasswordPage = () => {
                   </Button>
                 </div>
                 <div className="reset-back-login">
-                  <a href="/login">Ir para Login</a>
+                  <a href="/login">Go to Login</a>
                 </div>
               </Form.Group>
               <Button
@@ -154,10 +151,10 @@ const ResetPasswordPage = () => {
                       role="status"
                       aria-hidden="true"
                     />
-                    <span className="visually-hidden">Enviando...</span>
+                    <span className="visually-hidden">Sending...</span>
                   </>
                 ) : (
-                  "Redefinir Senha"
+                  "Reset Password"
                 )}
               </Button>
             </Form>

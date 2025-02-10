@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Form, Card, Alert, Spinner, Button } from "react-bootstrap";
 import useRequestPassword from "../hooks/useRequestPassword";
 import logo from "../assets/logo_marcelo_developer.png";
-import "../styles/RequestPasswordPage.css";
+import "../styles/request-password-page.css";
 
 const RequestPasswordPage = () => {
   const { requestPassword, loading, error, successMessage } =
@@ -22,7 +22,7 @@ const RequestPasswordPage = () => {
         </div>
         <Card className="request-card">
           <Card.Header className="request-card-header">
-            <h4>Recuperar Senha</h4>
+            <h4>Recover Password</h4>
           </Card.Header>
           <Card.Body className="request-card-body">
             {error && (
@@ -41,7 +41,7 @@ const RequestPasswordPage = () => {
                 <div className="request-email-container">
                   <Form.Control
                     type="email"
-                    placeholder="Digite seu email"
+                    placeholder="Enter email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="request-form-control"
@@ -49,7 +49,7 @@ const RequestPasswordPage = () => {
                   />
                 </div>
                 <div className="request-back-login">
-                  <a href="/login">Voltar para Login</a>
+                  <a href="/login">Go to Login</a>
                 </div>
               </Form.Group>
               <Button
@@ -66,10 +66,10 @@ const RequestPasswordPage = () => {
                       role="status"
                       aria-hidden="true"
                     />
-                    <span className="visually-hidden">Enviando...</span>
+                    <span className="visually-hidden">Sending...</span>
                   </>
                 ) : (
-                  "Enviar"
+                  "Send"
                 )}
               </Button>
             </Form>

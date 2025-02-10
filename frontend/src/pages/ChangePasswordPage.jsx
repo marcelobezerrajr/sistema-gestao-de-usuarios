@@ -24,35 +24,30 @@ const ChangePassword = () => {
   const [passwordError, setPasswordError] = useState("");
   const [confirmPasswordError, setConfirmPasswordError] = useState("");
 
-  const validateNewPassword = (password) => {
-    if (password.length < 6) {
-      return "A senha deve ter pelo menos 6 caracteres";
-    }
-    if (!/[A-Z]/.test(password)) {
-      return "A senha deve conter pelo menos uma letra maiúscula";
-    }
-    if (!/[a-z]/.test(password)) {
-      return "A senha deve conter pelo menos uma letra minúscula";
-    }
-    if (!/\d/.test(password)) {
-      return "A senha deve conter pelo menos um número";
-    }
-    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-      return "A senha deve conter pelo menos um caractere especial";
-    }
+  const validatePassword = (password) => {
+    if (password.length < 6)
+      return "Password must be at least 6 characters long.";
+    if (!/\d/.test(password))
+      return "The password must contain at least one digit.";
+    if (!/[A-Z]/.test(password))
+      return "The password should contain at least 1 uppercase character.";
+    if (!/[a-z]/.test(password))
+      return "The password must contain at least one lowercase letter.";
+    if (!/[!@#$%^&*()-_=+[\]{};:'\",<.>/?\\|`~]/.test(password))
+      return "The password must contain at least one special character.";
     return null;
   };
 
   const validateConfirmPassword = (password, confirmPassword) => {
     if (password !== confirmPassword) {
-      return "As senhas não coincidem";
+      return "Passwords do not match";
     }
     return;
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const validationError = validateNewPassword(newPassword);
+    const validationError = validatePassword(newPassword);
     const confirmError = validateConfirmPassword(newPassword, confirmPassword);
 
     if (validationError) {
@@ -76,7 +71,7 @@ const ChangePassword = () => {
         <div className="change-password-container">
           <Card className="change-password-card">
             <Card.Header className="change-password-card-header">
-              <h4>Alterar a Senha</h4>
+              <h4>Change password</h4>
             </Card.Header>
             <Card.Body className="change-password-card-body">
               {error && <div className="change-password-error">{error}</div>}
@@ -89,13 +84,11 @@ const ChangePassword = () => {
 
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                  <Form.Label className="change-password-form-label">
-                    Senha Atual
-                  </Form.Label>
+                  <Form.Label className="change-password-form-label"></Form.Label>
                   <div className="change-password-password-container">
                     <Form.Control
                       type={showPasswords.currentPassword ? "text" : "password"}
-                      placeholder="Senha Atual"
+                      placeholder="Enter current password"
                       value={currentPassword}
                       onChange={(e) => setCurrentPassword(e.target.value)}
                       className="change-password-form-control"
@@ -118,16 +111,16 @@ const ChangePassword = () => {
 
                 <Form.Group>
                   <Form.Label className="change-password-form-label">
-                    Nova Senha
+                    New Password
                   </Form.Label>
                   <div className="change-password-password-container">
                     <Form.Control
                       type={showPasswords.newPassword ? "text" : "password"}
-                      placeholder="Nova Senha"
+                      placeholder="Enter new password"
                       value={newPassword}
                       onChange={(e) => {
                         setNewPassword(e.target.value);
-                        setPasswordError(validateNewPassword(e.target.value));
+                        setPasswordError(validatePassword(e.target.value));
                       }}
                       className="change-password-form-control"
                     />
@@ -143,12 +136,12 @@ const ChangePassword = () => {
 
                 <Form.Group>
                   <Form.Label className="change-password-form-label">
-                    Confirmar Senha
+                    Confirm Password
                   </Form.Label>
                   <div className="change-password-password-container">
                     <Form.Control
                       type={showPasswords.confirmPassword ? "text" : "password"}
-                      placeholder="Confirmar Senha"
+                      placeholder="Enter confirm password"
                       value={confirmPassword}
                       onChange={(e) => {
                         setConfirmPassword(e.target.value);
@@ -187,10 +180,10 @@ const ChangePassword = () => {
                         role="status"
                         aria-hidden="true"
                       />
-                      <span className="visually-hidden">Alterando...</span>
+                      <span className="visually-hidden">Changing...</span>
                     </>
                   ) : (
-                    "Alterar Senha"
+                    "Change password"
                   )}
                 </Button>
               </Form>

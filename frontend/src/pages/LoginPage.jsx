@@ -44,7 +44,7 @@ const LoginPage = () => {
                   <Form.Control
                     type="email"
                     name="email"
-                    placeholder="Digite seu email"
+                    placeholder="Enter email"
                     value={formData.email}
                     onChange={handleChange}
                     className="login-form-control"
@@ -54,12 +54,12 @@ const LoginPage = () => {
               </Form.Group>
 
               <Form.Group controlId="formPassword">
-                <Form.Label className="login-form-label">Senha</Form.Label>
+                <Form.Label className="login-form-label">Password</Form.Label>
                 <div className="login-password-container">
                   <Form.Control
                     type={showPassword ? "text" : "password"}
                     name="password"
-                    placeholder="Digite sua senha"
+                    placeholder="Enter password"
                     value={formData.password}
                     onChange={handleChange}
                     className="login-form-control"
@@ -75,7 +75,7 @@ const LoginPage = () => {
                   </Button>
                 </div>
                 <div className="forgot-password">
-                  <a href="/request-password">Esqueceu a senha?</a>
+                  <a href="/request-password">Forgot your password?</a>
                 </div>
               </Form.Group>
 
@@ -88,10 +88,10 @@ const LoginPage = () => {
                       role="status"
                       aria-hidden="true"
                     />
-                    <span className="visually-hidden">Carregando...</span>
+                    <span className="visually-hidden">Loading...</span>
                   </>
                 ) : (
-                  "Entrar"
+                  "Enter"
                 )}
               </Button>
             </Form>
