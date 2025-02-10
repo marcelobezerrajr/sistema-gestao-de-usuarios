@@ -6,7 +6,8 @@
 
   .login-container,
   .request-container,
-  .reset-container {
+  .reset-container,
+  .change-password-container {
     width: 95%;
     padding: 0 20px;
   }

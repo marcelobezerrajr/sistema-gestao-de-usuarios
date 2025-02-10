@@ -3,7 +3,7 @@ import { Card, Form, Spinner, Button } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import MainLayout from "../layouts/MainLayout";
 import useChangePassword from "../hooks/useChangePassword";
-import "../styles/ChangePasswordPage.css";
+import "../styles/change-password-page.css";
 
 const ChangePassword = () => {
   const {
@@ -84,7 +84,9 @@ const ChangePassword = () => {
 
               <Form onSubmit={handleSubmit}>
                 <Form.Group>
-                  <Form.Label className="change-password-form-label"></Form.Label>
+                  <Form.Label className="change-password-form-label">
+                    Current Password
+                  </Form.Label>
                   <div className="change-password-password-container">
                     <Form.Control
                       type={showPasswords.currentPassword ? "text" : "password"}
