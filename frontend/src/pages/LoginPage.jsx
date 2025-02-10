@@ -3,7 +3,7 @@ import { Form, Card, Alert, Spinner, Button } from "react-bootstrap";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import logo from "../assets/logo_marcelo_developer.png";
 import useLogin from "../hooks/useLogin";
-import "../styles/LoginPage.css";
+import "../styles/login-page.css";
 
 const LoginPage = () => {
   const [showPassword, setShowPassword] = useState(false);

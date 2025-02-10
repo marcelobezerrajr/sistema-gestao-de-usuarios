@@ -4,6 +4,7 @@ import Routes from "./routes";
 import "normalize.css";
 import "./styles/global.css";
 import "./styles/vars.css";
+import "./styles/animations.css";
 
 const App = () => {
   return (

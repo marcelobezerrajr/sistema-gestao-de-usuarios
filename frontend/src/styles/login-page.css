@@ -1,0 +1,162 @@
+/* === Layout === */
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: var(--background-color);
+}
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: var(--container-width);
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-md);
+  animation: var(--fade-in-zoom);
+}
+
+/* === Logo === */
+.logo {
+  transition: var(--transition-transform);
+}
+
+.logo img {
+  width: var(--logo-width);
+}
+
+.logo:hover {
+  transform: var(--logo-transform);
+  filter: var(--logo-filter);
+}
+
+/* === Login Card === */
+.login-card {
+  width: var(--full-width);
+  background-color: var(--card-bg);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  transition: var(--transition-card);
+}
+
+.login-card:hover {
+  transform: var(--transform-scale);
+}
+
+/* === Login Card Header === */
+.login-card-header {
+  padding: var(--spacing-md);
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  text-align: center;
+}
+
+.login-card-header h4 {
+  margin: var(--spacing-lg);
+  font-size: var(--heading-font-size);
+  font-weight: bold;
+}
+
+/* === Formulário === */
+.login-card-body {
+  padding: var(--spacing-lg);
+}
+
+.login-form-label {
+  margin-left: var(--spacing-sm);
+  color: var(--secondary-color);
+  font-size: var(--label-font-size);
+  font-weight: bold;
+}
+
+.login-form-control {
+  width: var(--input-width);
+  padding: var(--input-padding);
+  margin: var(--spacing-md) 0;
+  font-size: var(--input-font-size);
+  color: var(--primary-color);
+  text-indent: var(--text-indent);
+  border: var(--input-border);
+  border-radius: var(--border-radius);
+  transition: var(--transition-border-color);
+}
+
+.login-form-control::placeholder {
+  color: var(--input-placeholder);
+}
+
+.login-form-control:focus {
+  border-color: var(--secondary-hover);
+  outline: none;
+}
+
+/* === Inputs e Botões === */
+.login-email-container,
+.login-password-container {
+  margin-bottom: var(--spacing-sm);
+  position: relative;
+}
+
+.login-password-toggle {
+  position: absolute;
+  top: 54%;
+  right: var(--spacing-md);
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--icon-color);
+  transition: color var(--transition-speed);
+}
+
+.login-password-toggle:hover {
+  color: var(--primary-color);
+}
+
+.forgot-password {
+  text-align: right;
+  margin: 0 var(--spacing-sm) var(--spacing-md) 0;
+  font-size: var(--small-text);
+}
+
+.forgot-password a {
+  color: var(--secondary-hover);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+.forgot-password a:hover {
+  color: var(--primary-hover);
+}
+
+/* === Botão de Login === */
+.login-button {
+  width: 100%;
+  padding: var(--button-padding);
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: var(--btn-font-size);
+  font-weight: bold;
+  transition: var(--transition-bg-color);
+  min-height: 44px;
+}
+
+.login-button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* === Alertas === */
+.login-alert-error {
+  padding: var(--alert-padding);
+  margin-bottom: var(--alert-margin-bottom);
+  font-size: var(--alert-font-size);
+  color: var(--error-text);
+  text-align: var(--text-align-center);
+  border: var(--error-border);
+  border-radius: var(--error-border-radius);
+  background-color: var(--error-bg);
+}
