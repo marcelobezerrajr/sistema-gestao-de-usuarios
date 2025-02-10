@@ -1,0 +1,107 @@
+.profile-container {
+  max-width: 100vh;
+  margin: 0 auto;
+  padding: var(--spacing-lg);
+  animation: var(--fade-in-zoom);
+}
+
+.profile-card {
+  background-color: var(--card-bg);
+  box-shadow: var(--box-shadow);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  text-align: center;
+  transition: var(--transition-card);
+}
+
+.profile-card:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+}
+
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-avatar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.default-avatar {
+  color: var(--icon-color);
+}
+
+.avatar-initials-large {
+  font-size: 3rem;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-weight: var(--font-weight-bold);
+}
+
+.profile-name {
+  font-size: 2rem;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.profile-email strong,
+.profile-permission strong {
+  font-size: 1rem;
+  color: var(--primary-color);
+  margin-bottom: var(--spacing-sm);
+}
+
+.edit-profile-btn {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-md);
+  font-size: 1rem;
+  border-radius: var(--border-radius);
+  transition: var(--transition-bg-color);
+  margin-top: var(--spacing-md);
+}
+
+.edit-profile-btn:hover {
+  background-color: var(--secondary-hover);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .profile-container {
+    padding: var(--spacing-md);
+  }
+
+  .profile-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .profile-info p {
+    font-size: 0.9rem;
+  }
+
+  .avatar-initials-large {
+    font-size: 2.5rem;
+    width: 80px;
+    height: 80px;
+  }
+
+  .edit-profile-btn {
+    font-size: 0.9rem;
+  }
+}
