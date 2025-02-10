@@ -33,7 +33,9 @@ export const ResetPasswordProvider = ({ children }) => {
         message: "Your password has been successfully reset.",
         error: false,
       });
-      navigate("/login");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     } catch (error) {
       setFeedback({ message: error, error: true });
     } finally {
