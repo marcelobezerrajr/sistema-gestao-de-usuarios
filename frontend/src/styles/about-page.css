@@ -5,6 +5,14 @@
   min-height: 100vh;
   color: var(--text-color);
   animation: var(--fade-in-zoom);
+  background-color: var(--card-bg);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: var(--transition-card);
+  padding: var(--spacing-lg);
+}
+
+.about-container:hover {
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
 }
 
 .about-header {
@@ -20,13 +28,13 @@
 .about-intro {
   font-size: 1.2rem;
   color: var(--text-color);
+  margin-bottom: 0px;
 }
 
 .about-section {
   width: 90%;
   max-width: 80vw;
   margin-bottom: var(--spacing-lg);
-  padding: var(--spacing-md);
   border-radius: var(--border-radius);
 }
 
@@ -96,6 +104,11 @@
   padding: var(--spacing-lg);
   text-align: center;
   border-radius: var(--border-radius);
+  transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.cta-section:hover {
+  transform: translateY(-5px);
 }
 
 .cta-title {
