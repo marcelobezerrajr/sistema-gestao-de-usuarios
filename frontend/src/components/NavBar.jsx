@@ -61,7 +61,7 @@ const NavBar = () => {
     <Navbar expand="lg" className="navbar">
       <div className="navbar-left">
         <img src={logo} alt="Logo Marcelo Developer" className="navbar-logo" />
-        <span>User Management APP</span>
+        <span>User Management System</span>
       </div>
       <nav className="navbar-nav">
         <Link to="/users">Home</Link>
