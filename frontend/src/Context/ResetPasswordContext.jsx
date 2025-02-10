@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   verifyResetToken,
   resetPassword,
@@ -9,6 +10,7 @@ export const ResetPasswordContext = createContext();
 export const ResetPasswordProvider = ({ children }) => {
   const [feedback, setFeedback] = useState({ message: "", error: false });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const verifyToken = async (token) => {
     setLoading(true);
@@ -28,9 +30,10 @@ export const ResetPasswordProvider = ({ children }) => {
     try {
       await resetPassword(token, newPassword);
       setFeedback({
-        message: "Sua senha foi redefinida com sucesso.",
+        message: "Your password has been successfully reset.",
         error: false,
       });
+      navigate("/login");
     } catch (error) {
       setFeedback({ message: error, error: true });
     } finally {

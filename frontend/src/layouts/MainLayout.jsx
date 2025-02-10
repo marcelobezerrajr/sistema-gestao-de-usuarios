@@ -2,15 +2,15 @@ import React from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 import "../styles/MainLayout.css";
-import { CustomersProvider } from "../context/CustomersContext";
+import { UsersContext } from "../context/UsersContext";
 
 const MainLayout = ({ children }) => {
   return (
     <div className="main-layout">
-      <CustomersProvider>
+      <UsersContext>
         <NavBar />
         <main className="main-content">{children}</main>
-      </CustomersProvider>
+      </UsersContext>
       <Footer />
     </div>
   );

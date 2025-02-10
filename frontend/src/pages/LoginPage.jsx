@@ -91,7 +91,7 @@ const LoginPage = () => {
                     <span className="visually-hidden">Loading...</span>
                   </>
                 ) : (
-                  "Enter"
+                  "Logar"
                 )}
               </Button>
             </Form>

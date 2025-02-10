@@ -38,7 +38,7 @@ export const LoginProvider = ({ children }) => {
       navigate("/users");
     } catch (error) {
       setError(error.message);
-      console.error("Erro no login:", error);
+      console.error("Login error:", error);
     } finally {
       setLoading(false);
     }

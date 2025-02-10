@@ -24,7 +24,7 @@ export const UserProvider = ({ children }) => {
         const data = await getAllUsers();
         setUsers(data);
       } catch (error) {
-        console.error("Erro ao carregar Usuários:", error);
+        console.error("Error loading Users:", error);
       } finally {
         setLoading(false);
       }
@@ -36,10 +36,10 @@ export const UserProvider = ({ children }) => {
   const getUser = async (id_user) => {
     try {
       const user = await getUserById(id_user);
-      if (!user) throw new Error(`Usuário com ID ${id_user} não encontrado.`);
+      if (!user) throw new Error(`User with ID ${id_user} not found.`);
       return user;
     } catch (error) {
-      console.error(`Erro ao carregar usuário com ID ${id_user}:`, error);
+      console.error(`Error loading user ID ${id_user}:`, error);
       throw error;
     }
   };
@@ -48,13 +48,12 @@ export const UserProvider = ({ children }) => {
     try {
       const addedUser = await createUser(newUser);
       setUsers([...users, addedUser]);
-      return { success: true, message: "Usuário adicionado com sucesso!" };
+      return { success: true, message: "User added successfully!" };
     } catch (error) {
-      console.error("Erro ao adicionar usuário:", error);
+      console.error("Error adding user:", error);
       return {
         success: false,
-        message:
-          "Erro ao adicionar o usuário. Verifique os dados e tente novamente.",
+        message: "Error adding user. Check the data and try again.",
       };
     }
   };
@@ -65,13 +64,12 @@ export const UserProvider = ({ children }) => {
       setUsers(
         users.map((user) => (user.id_user === id_user ? updated : user))
       );
-      return { success: true, message: "Usuário atualizado com sucesso!" };
+      return { success: true, message: "User updated successfully!" };
     } catch (error) {
-      console.error("Erro ao atualizar usuário:", error);
+      console.error("Error updating user:", error);
       return {
         success: false,
-        message:
-          "Erro ao atualizar o usuário. Verifique os dados e tente novamente.",
+        message: "Error updating user. Check the data and try again.",
       };
     }
   };
@@ -81,7 +79,7 @@ export const UserProvider = ({ children }) => {
       await deleteUser(id_user);
       setUsers(users.filter((user) => user.id_user !== id_user));
     } catch (error) {
-      console.error("Erro ao deletar usuário:", error);
+      console.error("Error deleting user:", error);
     }
   };
 

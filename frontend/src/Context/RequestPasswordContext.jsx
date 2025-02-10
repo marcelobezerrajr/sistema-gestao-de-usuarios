@@ -18,7 +18,7 @@ export const RequestPasswordProvider = ({ children }) => {
       setSuccessMessage(response.message);
     } catch (err) {
       setError(
-        err.message || "Ocorreu um erro ao solicitar a recuperação de senha."
+        err.message || "An error occurred when requesting password recovery."
       );
     } finally {
       setLoading(false);
