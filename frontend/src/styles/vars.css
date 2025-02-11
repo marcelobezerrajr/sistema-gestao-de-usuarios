@@ -63,6 +63,7 @@
   --transition-bg-color: background-color var(--transition-speed)
     var(--transition-ease);
   --fade-in-zoom: fadeInZoom 0.8s ease-out;
+  --bounce: bounce 1s infinite;
   --heading-font-size: 1.8rem;
 
   /* === Alerts === */
@@ -82,4 +83,5 @@
   --error-border: 1px solid #f5c6cb;
   --error-text: #721c24;
   --error-border-radius: 5px;
+  --error: #ff0000;
 }

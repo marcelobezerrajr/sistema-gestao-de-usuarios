@@ -1,0 +1,63 @@
+.filter-container {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.filter-label {
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.filter-select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid var(--primary-color);
+  background-color: var(--card-bg);
+  color: var(--primary-color);
+  outline: none;
+  transition: var(--transition-transform);
+  font-size: var(--small-text);
+  min-width: 5vw;
+}
+
+.filter-select:hover {
+  transform: scale(1.03);
+}
+
+.filter-select:focus {
+  border-color: #002f5d;
+  box-shadow: 0 0 5px rgba(0, 79, 152, 1);
+}
+
+.filters-section {
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+  }
+
+  .filter-label {
+    font-size: 1rem;
+  }
+
+  .filter-select {
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .filters-section {
+    justify-content: center;
+    width: 100%;
+  }
+}

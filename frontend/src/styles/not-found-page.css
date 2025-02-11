@@ -1,45 +1,35 @@
 .not-found-container {
-  height: 100vh;
+  min-height: 100vh;
   text-align: center;
-}
-
-@keyframes bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 }
 
 .not-found-container h1 {
   margin-bottom: 10px;
   font-size: 7rem;
-  color: #ff0000;
-  animation: bounce 1s infinite;
+  color: var(--error);
+  animation: var(--bounce);
 }
 
 .not-found-container p {
   font-size: 1.5rem;
-  color: #000000;
+  color: var(--text-color);
 }
 
 .not-found-button {
   padding: 12px 25px;
-  background-color: #081a89;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--text-light);
   border: none;
   border-radius: 5px;
   font-size: 1.2rem;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: var(--transition-bg-color);
 }
 
 .not-found-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
+  background-color: var(--primary-hover);
+  transform: var(--transform-scale);
 }
 
 .not-found-button:active {

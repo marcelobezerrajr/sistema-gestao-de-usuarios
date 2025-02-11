@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-import "../styles/MainLayout.css";
+import "../styles/mainlayout.css";
 import { UsersProvider } from "../context/UsersContext";
 
 const MainLayout = ({ children }) => {
