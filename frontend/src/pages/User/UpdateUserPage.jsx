@@ -13,7 +13,7 @@ import { FaSave } from "react-icons/fa";
 import useUser from "../../hooks/useUser";
 import MainLayout from "../../layouts/MainLayout";
 import { useParams } from "react-router-dom";
-import "../../styles/User/UpdateUserPage.css";
+import "../../styles/User/update-user-page.css";
 
 const UpdateUserPage = () => {
   const { id_user } = useParams();

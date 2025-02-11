@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaUser, FaKey, FaSignOutAlt } from "react-icons/fa";
 import useUser from "../hooks/useUser";
 import logo from "../assets/logo_marcelo_developer.png";
-import "../styles/NavBar.css";
+import "../styles/navbar.css";
 
 const NavBar = () => {
   const { users, setUsers } = useUser();

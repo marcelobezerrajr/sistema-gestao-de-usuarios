@@ -12,7 +12,7 @@ import {
 import { FaSave, FaEye, FaEyeSlash } from "react-icons/fa";
 import useUser from "../../hooks/useUser";
 import MainLayout from "../../layouts/MainLayout";
-import "../../styles/User/AddUserPage.css";
+import "../../styles/User/add-user-page.css";
 
 const AddUserPage = () => {
   const { addUser } = useUser();

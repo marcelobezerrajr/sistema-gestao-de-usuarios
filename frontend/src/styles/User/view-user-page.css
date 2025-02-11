@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 70vh;
+  min-height: 70vh;
   animation: var(--fade-in-zoom);
 }
 
@@ -20,7 +20,6 @@
 
 .view-user-card:hover {
   transform: scale(1.02);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .view-user-card-header {
@@ -75,4 +74,48 @@
 .view-user-alert {
   margin-top: 10px;
   color: #004f98;
+}
+
+@media (max-width: 768px) {
+  .view-user-container {
+    width: 90vw;
+  }
+
+  .view-user-card {
+    max-width: 500px;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-user-card {
+    max-width: 400px;
+  }
+
+  .view-user-card-header h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .view-user-card {
+    max-width: 340px;
+  }
+
+  .view-user-card-header h4 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 320px) {
+  .view-user-container {
+    width: 98vw;
+  }
+
+  .view-user-card {
+    max-width: 300px;
+  }
+
+  .view-user-card-header h4 {
+    font-size: 1.3rem;
+  }
 }

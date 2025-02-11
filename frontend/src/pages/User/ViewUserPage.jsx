@@ -3,7 +3,7 @@ import { Card, Spinner, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import useUser from "../../hooks/useUser";
 import MainLayout from "../../layouts/MainLayout";
-import "../../styles/User/ViewUserPage.css";
+import "../../styles/User/view-user-page.css";
 
 const ViewUserPage = () => {
   const { id_user } = useParams();
