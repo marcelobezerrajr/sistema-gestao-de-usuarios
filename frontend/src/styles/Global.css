@@ -9,3 +9,7 @@ body {
   background: #f0f2f5;
   font-family: var(--font-dm-sans);
 }
+
+.invalid-feedback {
+  color: var(--error);
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/TableRow.css";
+import "../styles/table-row.css";
 
 const TableRow = ({
   id_user,

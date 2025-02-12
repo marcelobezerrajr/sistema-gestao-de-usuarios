@@ -19,7 +19,7 @@ const ViewUserPage = () => {
         const userData = await getUser(id_user);
         setUser(userData);
       } catch (error) {
-        setError("Erro ao carregar os dados do usuário.");
+        setError("Error loading user data.");
       } finally {
         setLoading(false);
       }
@@ -33,13 +33,13 @@ const ViewUserPage = () => {
       <div className="view-user-container">
         <Card className="view-user-card">
           <div className="view-user-card-header">
-            <h4>Detalhes do Usuário</h4>
+            <h4>User Details</h4>
           </div>
           <Card.Body className="view-user-card-body">
             {loading ? (
               <div className="view-user-spinner">
                 <Spinner animation="border" />
-                <span>Carregando dados...</span>
+                <span>Loading data...</span>
               </div>
             ) : error ? (
               <Alert variant="danger" className="view-user-alert">
@@ -77,7 +77,7 @@ const ViewUserPage = () => {
               </div>
             ) : (
               <Alert variant="warning" className="view-user-alert">
-                Usuário não encontrado.
+                Usuário not found.
               </Alert>
             )}
           </Card.Body>

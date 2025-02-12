@@ -6,7 +6,7 @@ import useUser from "../../hooks/useUser";
 import MainLayout from "../../layouts/MainLayout";
 import FilterComponent from "../../components/FilterComponent";
 import { useNavigate } from "react-router-dom";
-import "../../styles/User/UserPage.css";
+import "../../styles/User/user-page.css";
 
 const UserPage = () => {
   const { users, loading, removeUser } = useUser();

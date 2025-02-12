@@ -106,7 +106,7 @@ const AddUserPage = () => {
 
     if (userPermission !== "Admin" && usuarioData.permission === "Admin") {
       setErrors({
-        permission: "Você não tem permissão para atribuir o nível Admin.",
+        permission: "You do not have permission to assign the Admin level.",
       });
       setLoading(false);
       return;
@@ -117,7 +117,7 @@ const AddUserPage = () => {
         ...usuarioData,
         hashed_password: usuarioData.hashed_password,
       });
-      setSuccess("Usuário adicionado com sucesso!");
+      setSuccess("User added successfully!");
       setUsuarioData({
         username: "",
         name: "",
@@ -128,7 +128,7 @@ const AddUserPage = () => {
         permission: "",
       });
     } catch (error) {
-      setErrors({ form: "Erro ao adicionar o usuário. Tente novamente." });
+      setErrors({ form: "Error adding user. Try again." });
     } finally {
       setLoading(false);
     }
