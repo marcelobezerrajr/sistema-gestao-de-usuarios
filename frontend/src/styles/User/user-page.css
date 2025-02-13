@@ -76,6 +76,26 @@
   transform: var(--transform-scale);
 }
 
+.alert-success {
+  background-color: var(--success-bg);
+  border: var(--success-border);
+  border-radius: var(--border-radius);
+  color: var(--success-text);
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.alert-error {
+  background-color: var(--error-bg);
+  border: var(--error-border);
+  border-radius: var(--border-radius);
+  color: var(--error-text);
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
 @media (max-width: 1024px) {
   .header-section {
     flex-direction: column;

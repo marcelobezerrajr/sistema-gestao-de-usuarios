@@ -34,6 +34,7 @@
   --card-bg: #fff;
   --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   --transform-scale: scale(1.02);
+  --dropdown-bg: #343a40;
 
   /* === Form === */
   --label-font-size: 1.1rem;
@@ -62,6 +63,9 @@
     box-shadow var(--transition-speed) var(--transition-ease);
   --transition-bg-color: background-color var(--transition-speed)
     var(--transition-ease);
+  --transition-color: color var(--transition-speed) ease,
+    var(--transition-transform);
+
   --fade-in-zoom: fadeInZoom 0.8s ease-out;
   --bounce: bounce 1s infinite;
   --heading-font-size: 1.8rem;

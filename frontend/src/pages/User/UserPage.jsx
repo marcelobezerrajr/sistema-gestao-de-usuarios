@@ -58,7 +58,7 @@ const UserPage = () => {
 
   const handleDeleteUser = async (id_user) => {
     await removeUser(id_user);
-    setAlertMessage("Usuário deletado com sucesso!");
+    setAlertMessage("User deleted successfully!");
     setAlertVariant("success");
   };
 
@@ -101,7 +101,7 @@ const UserPage = () => {
 
         {alertMessage && (
           <Alert
-            className="alert-success"
+            className="user-alert-success"
             variant={alertVariant}
             onClose={() => setAlertMessage("")}
           >
@@ -112,7 +112,7 @@ const UserPage = () => {
         {loading ? (
           <p>Carregando...</p>
         ) : !Array.isArray(filteredUsers) || filteredUsers.length === 0 ? (
-          <Alert className="alert-error" variant="warning">
+          <Alert className="user-alert-error" variant="warning">
             Nenhum usuário encontrado.
           </Alert>
         ) : (
