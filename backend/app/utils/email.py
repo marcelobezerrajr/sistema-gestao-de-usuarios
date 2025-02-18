@@ -48,6 +48,9 @@ def send_email(to_address: str, subject: str, body: str, image_path: str = None)
             with open(image_path, "rb") as img:
                 mime_image = MIMEImage(img.read())
                 mime_image.add_header("Content-ID", "<logo>")
+                mime_image.add_header(
+                    "Content-Disposition", "inline", filename="logo.png"
+                )
                 msg.attach(mime_image)
 
         server = smtplib.SMTP(SMTP_SERVER, int(SMTP_PORT))
@@ -69,38 +72,63 @@ def send_email(to_address: str, subject: str, body: str, image_path: str = None)
 
 def send_reset_password_email(email: str, token: str):
     reset_link = f"{RESET_PASSWORD_URL}?access_token={token}"
-    subject = "Marcelo Desenvolvimento: Redefina sua Senha"
+    subject = "Marcelo Developer: Reset your Password"
     body = f"""
     <html>
-    <body style="font-family: Arial, sans-serif; color: #333; margin: 0; padding: 0;">
-        <table role="presentation" style="width: 100%; background-color: #f4f4f4; padding: 20px; margin: 0;">
+    <body style="font-family: DM Sans, sans-serif; color: #333; margin: 0; padding: 0;">
+        <table role="presentation" width="100%" bgcolor="#f0f2f5" cellpadding="0" cellspacing="0" border="0" style="padding: 20px;">
             <tr>
-                <td style="text-align: center;">
-                    <div style="max-width: 600px; background: #ffffff; margin: auto; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
-                        <!-- Header Section -->
-                        <table role="presentation" style="width: 100%; border-bottom: 2px solid #0056b3; margin-bottom: 20px;">
-                            <tr>
-                                <td style="text-align: center; padding-bottom: 15px;">
-                                    <img src="cid:logo" alt="Logo Marcelo Desenvolvedor" style="width: 150px; height: auto; display: block; margin: 20px auto;">
-                                </td>
-                            </tr>
-                        </table>
-                        <h2 style="color: #081a89; margin-bottom: 20px;">Solicitação de redefinição de Senha</h2>
-                        <p style="font-size: 16px; line-height: 1.5;">Oi,</p>
-                        <p style="font-size: 16px; line-height: 1.5;">Recentemente, você solicitou a redefinição da senha da sua conta. Clique no botão abaixo para redefini-lo:</p>
-                        <p style="text-align: center;">
-                            <a href="{reset_link}" style="background-color: #081a89; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">Redefinir Senha</a>
-                        </p>
+                <td align="center">
+                    <table role="presentation" width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" style="border-radius: 8px; border: 1px solid #ddd; padding: 20px;">
+
+                        <!-- Header -->
+                        <tr>
+                            <td align="center" style="border-bottom: 2px solid #081a89; padding-bottom: 15px;">
+                                <img src="cid:logo" alt="Logo Marcelo Developer" width="150" style="display: block; margin: auto;">
+                            </td>
+                        </tr>
+
+                        <!-- Body -->
+                        <tr>
+                            <td style="padding: 20px; text-align: center;">
+                                <h2 style="color: #081a89; margin-bottom: 20px;">Password Reset Request</h2>
+                                <p style="font-size: 16px; line-height: 1.5;">Hi,</p>
+                                <p style="font-size: 16px; line-height: 1.5;">
+                                    You recently requested to reset your account password. Click the button below to reset it:
+                                </p>
+                                <p style="text-align: center; margin: 20px 0;">
+                                    <a href="{reset_link}" style="background-color: #081a89; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-size: 16px; font-weight: bold;">
+                                        Reset Password
+                                    </a>
+                                </p>
+                            </td>
+                        </tr>
 
                         <!-- Separator -->
-                        <hr style="border-top: 1px solid #ddd; margin: 20px 0;">
+                        <tr>
+                            <td style="padding: 10px 0;">
+                                <hr style="border-top: 1px solid #ddd;">
+                            </td>
+                        </tr>
 
-                        <!-- Footer Section -->
-                        <p style="font-size: 16px; line-height: 1.5;">Se você não solicitou uma redefinição de senha, ignore este e-mail ou<a href="mailto:marcelojuniorbzerra12@gmail.com" style="color: #0056b3; text-decoration: underline;"> entre em contato com o suporte</a> se você tiver dúvidas.</p>
-                        <p style="font-size: 16px; line-height: 1.5;">Obrigado,<br>Equipe Marcelo Desenvolvimento</p>
-                        <hr style="border-top: 1px solid #ddd; margin: 20px 0;">
-                        <p style="font-size: 12px; color: #777;">Se você estiver com problemas para clicar no botão "Redefinir senha", clique ou copie e cole a URL abaixo em seu navegador:<br><a href="{reset_link}" style="color: #0056b3; text-decoration: underline;">{reset_link}</a></p>
-                    </div>
+                        <!-- Footer -->
+                        <tr>
+                            <td style="padding: 20px; text-align: center;">
+                                <p style="font-size: 16px; line-height: 1.5;">
+                                    If you have not requested a password reset, please ignore this email or
+                                    <a href="mailto:marcelojuniorbzerra12@gmail.com" style="color: #0056b3; text-decoration: underline;">
+                                        contact support
+                                    </a> if you have questions.
+                                </p>
+                                <p style="font-size: 16px; line-height: 1.5;">Thanks,<br>Marcelo Development Team</p>
+                                <p style="font-size: 12px; color: #777;">
+                                    If you are having trouble clicking the "Reset Password" button, click or copy and paste the URL below into your browser:<br>
+                                    <a href="{reset_link}" style="color: #0056b3; text-decoration: underline;">{reset_link}</a>
+                                </p>
+                            </td>
+                        </tr>
+
+                    </table>
                 </td>
             </tr>
         </table>
@@ -116,37 +144,52 @@ def send_reset_password_email(email: str, token: str):
 
 
 def send_password_reset_confirmation_email(email: str):
-    subject = "Marcelo Desenvolvimento: Sua senha foi redefinida"
+    subject = "Marcelo Developer: Your password has been reset"
     body = """
     <html>
-    <body style="font-family: Arial, sans-serif; color: #333; margin: 0; padding: 0;">
-        <table role="presentation" style="width: 100%; background-color: #f4f4f4; padding: 20px; margin: 0;">
+    <body style="font-family: DM Sans, sans-serif; color: #333; margin: 0; padding: 0;">
+        <table role="presentation" width="100%" bgcolor="#f0f2f5" cellpadding="0" cellspacing="0" border="0" style="padding: 20px;">
             <tr>
-                <td style="text-align: center;">
-                    <div style="max-width: 600px; background: #ffffff; margin: auto; padding: 20px; border-radius: 8px; border: 1px solid #ddd;">
-                        <!-- Header Section -->
-                        <table role="presentation" style="width: 100%; border-bottom: 2px solid #081a89; margin-bottom: 20px;">
-                            <tr>
-                                <td style="text-align: center; padding-bottom: 15px;">
-                                    <img src="cid:logo" alt="Logo Marcelo Desenvolvedor" style="width: 150px; height: auto; display: block; margin: 20px auto;">
-                                </td>
-                                </td>
-                            </tr>
-                        </table>
+                <td align="center">
+                    <table role="presentation" width="600" bgcolor="#ffffff" cellpadding="0" cellspacing="0" border="0" style="border-radius: 8px; border: 1px solid #ddd; padding: 20px;">
 
-                        <!-- Body Section -->
-                        <h2 style="color: #081a89; margin-bottom: 20px;">Redefinição de Senha Bem-Sucedida</h2>
-                        <p style="font-size: 16px; line-height: 1.5;">Oi,</p>
-                        <p style="font-size: 16px; line-height: 1.5;">Sua senha foi redefinida com sucesso. Se você não solicitou ou fez essa alteração, por favor <a href="mailto:marcelojuniorbzerra12@gmail.com" style="color: #0056b3; text-decoration: underline;">entre em contato com o suporte </a> imediatamente.</p>
+                        <!-- Header -->
+                        <tr>
+                            <td align="center" style="border-bottom: 2px solid #081a89; padding-bottom: 15px;">
+                                <img src="cid:logo" alt="Logo Marcelo Developer" width="150" style="display: block; margin: auto;">
+                            </td>
+                        </tr>
+
+                        <!-- Body -->
+                        <tr>
+                            <td style="padding: 20px; text-align: center;">
+                                <h2 style="color: #081a89; margin-bottom: 20px;">Successful Password Reset</h2>
+                                <p style="font-size: 16px; line-height: 1.5;">Hi,</p>
+                                <p style="font-size: 16px; line-height: 1.5;">
+                                    Your password has been successfully reset. If you have not requested or made this change, please
+                                    <a href="mailto:marcelojuniorbzerra12@gmail.com" style="color: #0056b3; text-decoration: underline;">contact support</a> immediately.
+                                </p>
+                            </td>
+                        </tr>
 
                         <!-- Separator -->
-                        <hr style="border-top: 1px solid #ddd; margin: 20px 0;">
+                        <tr>
+                            <td style="padding: 10px 0;">
+                                <hr style="border-top: 1px solid #ddd;">
+                            </td>
+                        </tr>
 
-                        <!-- Footer Section -->
-                        <p style="font-size: 16px; line-height: 1.5;">Obrigado,<br>Equipe Marcelo Desenvolvimento</p>
-                        <hr style="border-top: 1px solid #ddd; margin: 20px 0;">
-                        <p style="font-size: 12px; color: #777;">Se você não iniciou esta solicitação, proteja sua conta imediatamente.</p>
-                    </div>
+                        <!-- Footer -->
+                        <tr>
+                            <td style="text-align: center; padding: 10px;">
+                                <p style="font-size: 16px; line-height: 1.5;">Thanks,<br>Marcelo Development Team</p>
+                                <p style="font-size: 12px; color: #777;">
+                                    If you have not initiated this request, please secure your account immediately.
+                                </p>
+                            </td>
+                        </tr>
+
+                    </table>
                 </td>
             </tr>
         </table>
