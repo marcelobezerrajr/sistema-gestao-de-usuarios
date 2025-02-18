@@ -45,14 +45,17 @@ const UpdateUserPage = () => {
     const fetchUsuario = async () => {
       setLoading(true);
       try {
-        const userData = await getUser(id_user);
-        setuserData(userData);
+        const user = await getUser(id_user);
+        if (user) {
+          setuserData({ ...user });
+        }
       } catch (error) {
         setErrors({ form: "Error loading user data." });
       } finally {
         setLoading(false);
       }
     };
+
     fetchUsuario();
   }, [id_user, getUser]);
 
@@ -118,6 +121,8 @@ const UpdateUserPage = () => {
     try {
       await updateUserData(id_user, userData);
       setSuccess("User updated successfully!");
+      const updatedUser = await getUser(id_user);
+      setuserData({ ...updatedUser });
     } catch (error) {
       setErrors({ form: "Error updating user. Try again." });
     } finally {

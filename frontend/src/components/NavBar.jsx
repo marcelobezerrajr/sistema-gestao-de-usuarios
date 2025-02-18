@@ -114,7 +114,6 @@ const NavBar = () => {
         </div>
       )}
 
-      {/* Links normais para telas grandes */}
       {!isMobile && (
         <nav className="navbar-nav">
           <Link to="/users">Home</Link>

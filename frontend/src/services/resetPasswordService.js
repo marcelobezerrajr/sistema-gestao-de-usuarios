@@ -6,8 +6,7 @@ export const verifyResetToken = async (token) => {
     return response.data;
   } catch (error) {
     throw (
-      error.response?.data?.detail ||
-      "Erro de rede. Por favor, tente novamente mais tarde."
+      error.response?.data?.detail || "Network error. Please try again later."
     );
   }
 };
@@ -22,7 +21,7 @@ export const resetPassword = async (token, newPassword) => {
   } catch (error) {
     throw new Error(
       error.response?.data?.detail ||
-        "Ocorreu um erro na redefinição de senha. Tente novamente mais tarde."
+        "An error occurred while resetting the password. Try again later."
     );
   }
 };

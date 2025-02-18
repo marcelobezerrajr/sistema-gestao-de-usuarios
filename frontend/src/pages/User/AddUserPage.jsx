@@ -113,20 +113,27 @@ const AddUserPage = () => {
     }
 
     try {
-      await addUser({
+      const result = await addUser({
         ...usuarioData,
         hashed_password: usuarioData.hashed_password,
       });
-      setSuccess("User added successfully!");
-      setUsuarioData({
-        username: "",
-        name: "",
-        last_name: "",
-        email: "",
-        hashed_password: "",
-        telephone: "",
-        permission: "",
-      });
+
+      if (result.success) {
+        setSuccess("User added successfully!");
+        setUsuarioData({
+          username: "",
+          name: "",
+          last_name: "",
+          email: "",
+          hashed_password: "",
+          telephone: "",
+          permission: "",
+        });
+
+        setTimeout(() => {
+          navigate("/users");
+        }, 1000);
+      }
     } catch (error) {
       setErrors({ form: "Error adding user. Try again." });
     } finally {

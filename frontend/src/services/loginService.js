@@ -32,8 +32,8 @@ const loginService = {
 
       return userData;
     } catch (error) {
-      console.error("Erro no login:", error);
-      throw new Error("Email ou senha inválidos");
+      console.error("Login error:", error);
+      throw new Error("Invalid email or password");
     }
   },
 
@@ -46,7 +46,7 @@ const loginService = {
       });
       return response.data;
     } catch (error) {
-      throw new Error("Token inválido ou expirado");
+      throw new Error("Invalid or expired token");
     }
   },
 

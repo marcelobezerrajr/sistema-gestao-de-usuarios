@@ -46,8 +46,9 @@ export const UserProvider = ({ children }) => {
 
   const addUser = async (newUser) => {
     try {
-      const addedUser = await createUser(newUser);
-      setUsers([...users, addedUser]);
+      await createUser(newUser);
+      const updatedUsers = await getAllUsers();
+      setUsers(updatedUsers);
       return { success: true, message: "User added successfully!" };
     } catch (error) {
       console.error("Error adding user:", error);
@@ -60,10 +61,9 @@ export const UserProvider = ({ children }) => {
 
   const updateUserData = async (id_user, updatedUser) => {
     try {
-      const updated = await updateUser(id_user, updatedUser);
-      setUsers(
-        users.map((user) => (user.id_user === id_user ? updated : user))
-      );
+      await updateUser(id_user, updatedUser);
+      const updatedUsers = await getAllUsers();
+      setUsers(updatedUsers);
       return { success: true, message: "User updated successfully!" };
     } catch (error) {
       console.error("Error updating user:", error);

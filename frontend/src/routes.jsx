@@ -17,7 +17,7 @@ import PrivateRoute from "./components/PrivateRoute";
 
 const AppRoutes = () => {
   return (
-    <Suspense fallback={<div>Carregando...</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         <Route exact path="/" element={<LoginPage />} />
         <Route exact path="/login" element={<LoginPage />} />

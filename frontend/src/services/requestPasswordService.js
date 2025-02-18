@@ -7,7 +7,7 @@ const requestPasswordService = async (email) => {
     });
 
     if (!response || response.status !== 200) {
-      throw new Error("Erro ao solicitar recuperação de senha.");
+      throw new Error("Error when requesting password recovery.");
     }
 
     return response.data;
@@ -16,7 +16,7 @@ const requestPasswordService = async (email) => {
       throw new Error(error.response.data.detail);
     } else {
       throw new Error(
-        error.message || "Erro desconhecido no serviço de recuperação de senha."
+        error.message || "Unknown error in password recovery service."
       );
     }
   }

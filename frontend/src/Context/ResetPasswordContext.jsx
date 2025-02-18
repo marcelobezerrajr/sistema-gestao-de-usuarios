@@ -16,7 +16,7 @@ export const ResetPasswordProvider = ({ children }) => {
     setLoading(true);
     try {
       await verifyResetToken(token);
-      setFeedback({ message: "Token válido", error: false });
+      setFeedback({ message: "Valid token", error: false });
     } catch (error) {
       setFeedback({ message: error, error: true });
     } finally {
