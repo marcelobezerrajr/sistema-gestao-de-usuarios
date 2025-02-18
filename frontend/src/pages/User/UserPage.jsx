@@ -110,10 +110,10 @@ const UserPage = () => {
         )}
 
         {loading ? (
-          <p>Carregando...</p>
+          <p>Loading...</p>
         ) : !Array.isArray(filteredUsers) || filteredUsers.length === 0 ? (
           <Alert className="user-alert-error" variant="warning">
-            Nenhum usuário encontrado.
+            No users found.
           </Alert>
         ) : (
           <Table className="custom-table">
