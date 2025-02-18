@@ -1,15 +1,15 @@
-import React, { createContext, useState } from 'react';
-import { changePasswordService } from '../services/changePasswordService';
+import React, { createContext, useState } from "react";
+import { changePasswordService } from "../services/changePasswordService";
 
 export const ChangePasswordContext = createContext();
 
 export const ChangePasswordProvider = ({ children }) => {
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [currentPassword, setCurrentPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [showPasswords, setShowPasswords] = useState({
     currentPassword: false,
     newPassword: false,
@@ -18,19 +18,22 @@ export const ChangePasswordProvider = ({ children }) => {
 
   const handleChangePassword = async () => {
     if (newPassword !== confirmPassword) {
-      setError('As senhas não coincidem');
+      setError("Passwords do not match");
       return;
     }
-    
+
     setLoading(true);
-    setError('');
-    setMessage('');
+    setError("");
+    setMessage("");
 
     try {
-      const response = await changePasswordService(currentPassword, newPassword);
-      setMessage(response.message || 'Senha alterada com sucesso!');
+      const response = await changePasswordService(
+        currentPassword,
+        newPassword
+      );
+      setMessage(response.message || "Password changed successfully!");
     } catch (err) {
-      setError(err.message || 'Erro ao tentar alterar a senha');
+      setError(err.message || "Error when trying to change password");
     } finally {
       setLoading(false);
     }

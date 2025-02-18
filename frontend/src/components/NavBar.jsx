@@ -1,140 +1,161 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Navbar, Nav, Form, FormControl, Button, Badge, NavDropdown, Spinner } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
-import { CustomersContext } from '../context/CustomersContext';
-import logo from '../assets/logo_marcelo_desenvolvedor.png';
-import '../styles/NavBar.css';
+import React, { useState, useEffect, useRef } from "react";
+import { Navbar, NavDropdown, Badge } from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  FaBars,
+  FaTimes,
+  FaUser,
+  FaKey,
+  FaSignOutAlt,
+  FaUsers,
+  FaHome,
+  FaInfoCircle,
+} from "react-icons/fa";
+import useUser from "../hooks/useUser";
+import logo from "../assets/logo_marcelo_developer.png";
+import "../styles/navbar.css";
 
-function NavBar() {
-    const [search, setSearch] = useState("");
-    const [customers, setCustomers] = useContext(CustomersContext);
-    const [originalCustomers, setOriginalCustomers] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const [userName, setUserName] = useState("Usuário");
-    const [userUsername, setUserUsername] = useState("Username");
-    const [userEmail, setUserEmail] = useState(null);
-    const [userPermission, setUserPermission] = useState(null);
-    const history = useHistory();
+const NavBar = () => {
+  const { users } = useUser();
+  const [userUsername, setUserUsername] = useState("Username");
+  const [userEmail, setUserEmail] = useState("Email");
+  const [userPermission, setUserPermission] = useState("Permission");
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
-    useEffect(() => {
-        const storedUserName = localStorage.getItem('user_name') || 'Usuário';
-        const storedUserUsername = localStorage.getItem('user_username') || 'Username';
-        const storedUserEmail = localStorage.getItem('user_email') || '';
-        const storedUserPermission = localStorage.getItem('user_permission') || '';
+  const navigate = useNavigate();
+  const dropdownRef = useRef(null);
+  const menuRef = useRef(null);
 
-        setUserName(storedUserName);
-        setUserUsername(storedUserUsername);
-        setUserEmail(storedUserEmail);
-        setUserPermission(storedUserPermission);
-    }, []);
+  useEffect(() => {
+    setUserUsername(localStorage.getItem("user_username") || "Username");
+    setUserEmail(localStorage.getItem("user_email") || "Email");
+    setUserPermission(localStorage.getItem("user_permission") || "Permission");
+  }, []);
 
-    useEffect(() => {
-        if (customers.data.length > 0 && originalCustomers.length === 0) {
-            setOriginalCustomers(customers.data);
-        }
-    }, [customers.data, originalCustomers.length]);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
-    const updateSearch = (e) => {
-        setSearch(e.target.value);
-    };
+  const getInitials = (username) => username?.charAt(0).toUpperCase() || "U";
 
-    const filterCustomer = (e) => {
-        e.preventDefault();
-        setLoading(true);
-        if (search === "") {
-            setCustomers({ data: originalCustomers });
-        } else {
-            const filteredCustomers = originalCustomers.filter(customer =>
-                customer.username && customer.username.toLowerCase().includes(search.toLowerCase())
-            );
-            setCustomers({ data: filteredCustomers });
-        }
-        setLoading(false);
-    };
+  const toggleDropdown = () => setDropdownOpen((prev) => !prev);
+  const toggleMenu = (e) => {
+    e.stopPropagation();
+    setMenuOpen((prev) => !prev);
+  };
 
-    const handleLogout = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('user_permission');
-        localStorage.removeItem('user_name');
-        localStorage.removeItem('user_username');
-        localStorage.removeItem('user_email');
-        history.push('/login');
-    };
+  const handleClickOutside = (e) => {
+    if (menuRef.current && !menuRef.current.contains(e.target)) {
+      setMenuOpen(false);
+    }
+    if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+      setDropdownOpen(false);
+    }
+  };
 
-    const getInitials = (name) => {
-        return name && name.length > 0 ? name.charAt(0).toUpperCase() : 'U';
-    };
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
 
-    return (
-        <Navbar expand="lg" className="marcelo-desenvolvedor-navbar">
-            <Navbar.Brand as={Link} to="/customers">
-                <img
-                    src={logo}
-                    width="110"
-                    height="70"
-                    className="d-inline-block align-top"
-                    alt="Marcelo Desenvolvedor Logo"
-                />
-                <span>User Management APP</span>
-            </Navbar.Brand>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto align-items-center marcelo-desenvolvedor-nav">
-                    <Nav.Link as={Link} to="/customers">Home</Nav.Link>
-                    <Nav.Link as={Link} to="/about">About</Nav.Link>
-
-                    <NavDropdown
-                        title={
-                            <span className="d-flex align-items-center avatar-link">
-                                <div className="user-initials-icon">
-                                    {getInitials(userName)}
-                                </div>
-                                <span className="user-info">
-                                    {userName !== 'Usuário' ? userName : userEmail}
-                                </span>
-                            </span>
-                        }
-                        id="user-nav-dropdown"
-                        className="custom-user-dropdown"
-                    >
-                        <div className="dropdown-user-info">
-                            <strong>{userUsername !== 'Username' ? userUsername : userEmail}</strong>
-                            {userEmail && <p>{userEmail}</p>}
-                        </div>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
-                        <NavDropdown.Item as={Link} to="/changepassword">Change Password</NavDropdown.Item>
-                        <NavDropdown.Divider />
-                        <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
-                    </NavDropdown>
-
-                    {customers.data.length > 0 && (
-                        <Badge className="custom-badge ml-2">
-                            Number of Customers: {customers.data.length}
-                        </Badge>
-                    )}
-                </Nav>
-
-                <Form onSubmit={filterCustomer} className="form-inline ml-auto d-flex custom-form">
-                    {userPermission && (userPermission === 'Admin' || userPermission === 'User') && (
-                        <Link to="/createcustomer" className="btn btn-primary btn-sm mr-2 custom-button">
-                            Add New Customer
-                        </Link>
-                    )}
-                    <FormControl
-                        value={search}
-                        onChange={updateSearch}
-                        type="text"
-                        placeholder="Search"
-                        className="form-control custom-search"
-                    />
-                    <Button type="submit" className="btn custom-button-search mr-2">
-                        {loading ? <Spinner as="span" animation="border" size="sm" /> : "Search"}
-                    </Button>
-                </Form>
-            </Navbar.Collapse>
-        </Navbar>
+  const handleLogout = () => {
+    ["access_token", "user_permission", "user_username", "user_email"].forEach(
+      (item) => localStorage.removeItem(item)
     );
-}
+    navigate("/login");
+  };
+
+  return (
+    <Navbar expand="lg" className="navbar">
+      <div className="navbar-left">
+        <Link to="/users">
+          <img
+            src={logo}
+            alt="Logo Marcelo Developer"
+            className="navbar-logo"
+          />
+        </Link>
+        <span>User Management System</span>
+      </div>
+
+      {isMobile && (
+        <div className="menu-dropdown-container" ref={menuRef}>
+          <button className="menu-toggle" onClick={toggleMenu}>
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+
+          {menuOpen && (
+            <div className="menu-dropdown">
+              <Link
+                to="/users"
+                className="dropdown-item"
+                onClick={() => setMenuOpen(false)}
+              >
+                <FaHome className="icon" /> Home
+              </Link>
+              <Link
+                to="/about"
+                className="dropdown-item"
+                onClick={() => setMenuOpen(false)}
+              >
+                <FaInfoCircle className="icon" /> About
+              </Link>
+              {users?.length > 0 && (
+                <div className="dropdown-item-number-users">
+                  <FaUsers className="icon" /> Number of Users: {users.length}
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
+      {!isMobile && (
+        <nav className="navbar-nav">
+          <Link to="/users">Home</Link>
+          <Link to="/about">About</Link>
+          {users?.length > 0 && (
+            <Badge className="custom-badge">
+              <FaUsers className="fa-users" />
+              Number of Users: {users.length}
+            </Badge>
+          )}
+        </nav>
+      )}
+
+      <div className="user-avatar-container" ref={dropdownRef}>
+        <span className="avatar-link" onClick={toggleDropdown}>
+          <div className="user-initials-icon">{getInitials(userUsername)}</div>
+        </span>
+        {dropdownOpen && (
+          <div className="user-dropdown-menu">
+            <div className="dropdown-user-info">
+              <strong>
+                {userUsername !== "Username" ? userUsername : userEmail}
+              </strong>
+              {userEmail && <p>{userEmail}</p>}
+              {userPermission && <p>{userPermission}</p>}
+            </div>
+            <hr />
+            <NavDropdown.Item as={Link} to="/profile">
+              <FaUser className="me-2" /> Profile
+            </NavDropdown.Item>
+            <NavDropdown.Item as={Link} to="/change-password">
+              <FaKey className="me-2" /> Change Password
+            </NavDropdown.Item>
+            <hr />
+            <NavDropdown.Item onClick={handleLogout}>
+              <FaSignOutAlt className="me-2" /> Logout
+            </NavDropdown.Item>
+          </div>
+        )}
+      </div>
+    </Navbar>
+  );
+};
 
 export default NavBar;

@@ -1,6 +1,12 @@
-import React, { createContext, useState, useEffect, useContext } from 'react';
-import { getAllUsers, getUserById, createUser, updateUser, deleteUser } from '../services/userService';
-import { LoginContext } from './LoginContext';
+import React, { createContext, useState, useEffect, useContext } from "react";
+import {
+  getAllUsers,
+  getUserById,
+  createUser,
+  updateUser,
+  deleteUser,
+} from "../services/userService";
+import { LoginContext } from "./LoginContext";
 
 export const UserContext = createContext();
 
@@ -12,13 +18,13 @@ export const UserProvider = ({ children }) => {
   useEffect(() => {
     const fetchUsers = async () => {
       if (!user) return;
-    
+
       setLoading(true);
       try {
         const data = await getAllUsers();
         setUsers(data);
       } catch (error) {
-        console.error('Erro ao carregar Usuários:', error);
+        console.error("Error loading Users:", error);
       } finally {
         setLoading(false);
       }
@@ -30,47 +36,57 @@ export const UserProvider = ({ children }) => {
   const getUser = async (id_user) => {
     try {
       const user = await getUserById(id_user);
-      if (!user) throw new Error(`Usuário com ID ${id_user} não encontrado.`);
+      if (!user) throw new Error(`User with ID ${id_user} not found.`);
       return user;
     } catch (error) {
-      console.error(`Erro ao carregar usuário com ID ${id_user}:`, error);
+      console.error(`Error loading user ID ${id_user}:`, error);
       throw error;
     }
   };
 
   const addUser = async (newUser) => {
     try {
-      const addedUser = await createUser(newUser);
-      setUsers([...users, addedUser]);
-      return { success: true, message: 'Usuário adicionado com sucesso!' };
+      await createUser(newUser);
+      const updatedUsers = await getAllUsers();
+      setUsers(updatedUsers);
+      return { success: true, message: "User added successfully!" };
     } catch (error) {
-      console.error("Erro ao adicionar usuário:", error)
-      return { success: false, message: 'Erro ao adicionar o usuário. Verifique os dados e tente novamente.' };
+      console.error("Error adding user:", error);
+      return {
+        success: false,
+        message: "Error adding user. Check the data and try again.",
+      };
     }
   };
 
   const updateUserData = async (id_user, updatedUser) => {
     try {
-      const updated = await updateUser(id_user, updatedUser);
-      setUsers(users.map(user => user.id_user === id_user ? updated : user));
-      return { success: true, message: 'Usuário atualizado com sucesso!' };
+      await updateUser(id_user, updatedUser);
+      const updatedUsers = await getAllUsers();
+      setUsers(updatedUsers);
+      return { success: true, message: "User updated successfully!" };
     } catch (error) {
-      console.error("Erro ao atualizar usuário:", error)
-      return { success: false, message: 'Erro ao atualizar o usuário. Verifique os dados e tente novamente.' };
+      console.error("Error updating user:", error);
+      return {
+        success: false,
+        message: "Error updating user. Check the data and try again.",
+      };
     }
   };
 
   const removeUser = async (id_user) => {
     try {
       await deleteUser(id_user);
-      setUsers(users.filter(user => user.id_user !== id_user));
+      setUsers(users.filter((user) => user.id_user !== id_user));
     } catch (error) {
-      console.error("Erro ao deletar usuário:", error)
+      console.error("Error deleting user:", error);
     }
   };
 
   return (
-    <UserContext.Provider value={{ users, loading, getUser, addUser, updateUserData, removeUser }}>
+    <UserContext.Provider
+      value={{ users, loading, getUser, addUser, updateUserData, removeUser }}
+    >
       {children}
     </UserContext.Provider>
   );

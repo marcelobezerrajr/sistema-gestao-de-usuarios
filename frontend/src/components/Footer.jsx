@@ -1,11 +1,13 @@
-import React from 'react';
-import '../styles/Footer.css';
+import React from "react";
+import "../styles/footer.css";
 
 const Footer = () => {
   return (
     <footer className="footer">
-      <p>© {new Date().getFullYear()} ViperIT. Todos os direitos reservados.</p>
-      <p>Capacitando empresas com soluções tecnológicas inovadoras.</p>
+      <p>
+        © {new Date().getFullYear()} Marcelo Developer. All rights reserved.
+      </p>
+      <p>Empowering companies with innovative technology solutions.</p>
     </footer>
   );
 };

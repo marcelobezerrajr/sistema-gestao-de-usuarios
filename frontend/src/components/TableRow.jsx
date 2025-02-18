@@ -1,37 +1,48 @@
-import React from 'react';
-import "../styles/TableRow.css"
+import React from "react";
+import "../styles/table-row.css";
 
-const TableRow = ({ rowData, columns, actions, idField, secondaryIdField }) => {
-  const userPermission = localStorage.getItem('user_permission');
+const TableRow = ({
+  id_user,
+  username,
+  name,
+  last_name,
+  email,
+  telephone,
+  permission,
+  handleDelete,
+  handleUpdate,
+  handleView,
+}) => {
+  const userPermission = localStorage.getItem("user_permission");
 
   return (
     <tr>
-      {columns.map((col) => (
-        <td key={col}>{rowData[col]}</td>
-      ))}
-      
+      <td>{id_user}</td>
+      <td>{username}</td>
+      <td>{name}</td>
+      <td>{last_name}</td>
+      <td>{email}</td>
+      <td>{telephone}</td>
+      <td>{permission}</td>
       <td>
-        {actions.view && (
-          <button 
-            onClick={() => {
-              if (secondaryIdField) {
-                actions.view(rowData[idField], rowData[secondaryIdField]);
-              } else {
-                actions.view(rowData[idField]);
-              }
-            }}
-            className="custom-button-view"
-          >
-            Ver
+        <button onClick={() => handleView(id_user)} className="button-view">
+          View
+        </button>
+
+        {(userPermission === "Admin" ||
+          (userPermission === "User" && permission !== "Admin")) && (
+          <button onClick={() => handleUpdate(id_user)} className="button-edit">
+            Update
           </button>
         )}
-        
-        {actions.update && (userPermission === 'Admin' || (userPermission === 'User' && rowData.permission !== 'Admin')) && (
-          <button onClick={() => actions.update(rowData[idField])} className="custom-button-edit">Editar</button>
-        )}
-        
-        {actions.delete && userPermission === 'Admin' && (
-          <button onClick={() => actions.delete(rowData[idField])} className="custom-button-delete">Deletar</button>
+
+        {userPermission === "Admin" && (
+          <button
+            onClick={() => handleDelete(id_user)}
+            className="button-delete"
+          >
+            Delete
+          </button>
         )}
       </td>
     </tr>

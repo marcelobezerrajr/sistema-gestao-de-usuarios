@@ -1,0 +1,48 @@
+.invalid-token-container {
+  min-height: 100vh;
+  text-align: center;
+}
+
+.invalid-token-container h1 {
+  font-size: 6rem;
+  color: var(--error);
+  animation: var(--bounce);
+}
+
+.invalid-token-container h4 {
+  font-size: 1.6rem;
+  color: var(--text-color);
+}
+
+.invalid-token-container p {
+  margin-bottom: 30px;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.invalid-token-button {
+  padding: 12px 25px;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  font-weight: var(--font-weight-bold);
+  cursor: pointer;
+  transition: var(--transition-bg-color);
+}
+
+.invalid-token-button:hover {
+  background-color: var(--primary-hover);
+  transform: var(--transform-scale);
+}
+
+.invalid-token-button:active {
+  transform: scale(1);
+}
+
+@media (max-width: 430px) {
+  .invalid-token-container {
+    padding: 0 15px;
+  }
+}

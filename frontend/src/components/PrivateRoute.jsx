@@ -1,9 +1,9 @@
-import React, { useContext } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
-import { LoginContext } from '../context/LoginContext';
+import React from "react";
+import { Navigate, Outlet } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
 
 const PrivateRoute = () => {
-  const { user, loading } = useContext(LoginContext);
+  const { user, loading } = useLogin();
 
   if (loading) {
     return <div>Carregando...</div>;

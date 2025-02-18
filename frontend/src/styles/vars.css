@@ -1,0 +1,91 @@
+:root {
+  /* FONT */
+  --font-dm-sans: "DM Sans", sans-serif;
+  --font-weight-bold: 700;
+  --small-text: 0.8rem;
+
+  /* === Layout === */
+  --container-width: min(90%, 400px);
+  --full-width: 100%;
+  --border-radius: 10px;
+
+  /* === Spacings === */
+  --spacing-sm: 5px;
+  --spacing-md: 10px;
+  --spacing-lg: 20px;
+
+  /* === Colors === */
+  --primary-color: #081a89;
+  --primary-hover: #0056b3;
+  --secondary-color: #004f98;
+  --secondary-hover: #1684bf;
+  --text-color: #000000;
+  --text-light: #fff;
+  --input-border: 1px solid #ced4da;
+  --input-placeholder: #1684bf;
+  --icon-color: #0056b3;
+
+  /* === Logo === */
+  --logo-width: 160px;
+  --logo-transform: scale(1.1);
+  --logo-filter: brightness(0.9);
+
+  /* === Cards === */
+  --card-bg: #fff;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --transform-scale: scale(1.02);
+  --dropdown-bg: #343a40;
+
+  /* === Form === */
+  --label-font-size: 1.1rem;
+  --label-margin-left: 0.3125rem;
+
+  /* === Inputs === */
+  --input-width: 100%;
+  --input-padding: 15px 0;
+  --input-font-size: 0.9rem;
+  --text-indent: 10px;
+
+  /* === Buttons === */
+  --btn-padding: 12px;
+  --btn-font-size: 1rem;
+  --btn-min-width: 2.75rem;
+
+  /* === Transitions & Animations === */
+  --transition-speed: 0.3s;
+  --transition-ease: ease-in-out;
+  --transition-transform: transform var(--transition-speed)
+      var(--transition-ease),
+    box-shadow var(--transition-speed) var(--transition-ease);
+  --transition-border-color: border-color var(--transition-speed)
+    var(--transition-ease);
+  --transition-card: transform var(--transition-speed) var(--transition-ease),
+    box-shadow var(--transition-speed) var(--transition-ease);
+  --transition-bg-color: background-color var(--transition-speed)
+    var(--transition-ease);
+  --transition-color: color var(--transition-speed) ease,
+    var(--transition-transform);
+
+  --fade-in-zoom: fadeInZoom 0.8s ease-out;
+  --bounce: bounce 1s infinite;
+  --heading-font-size: 1.8rem;
+
+  /* === Alerts === */
+  --alert-padding: 10px;
+  --alert-font-size: 1rem;
+  --text-align-center: center;
+  --alert-margin-bottom: 15px;
+
+  /* === Success Messages === */
+  --success-bg: #d4edda;
+  --success-border: 1px solid #c3e6cb;
+  --success-text: #155724;
+  --success-border-radius: 5px;
+
+  /* === Error Messages === */
+  --error-bg: #f8d7da;
+  --error-border: 1px solid #f5c6cb;
+  --error-text: #721c24;
+  --error-border-radius: 5px;
+  --error: #ff0000;
+}
