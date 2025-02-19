@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./frontend/src/assets/logo_marcelo_developer_branco.png" height="70" style="margin-bottom: 20px; margin-top: 20px;">
+    <img src="./docs/assets/logo_marcelo_developer_branco.png" height="70" style="margin-bottom: 20px; margin-top: 20px;">
     <h1 align="center">Sistema Gestão de Usuários 👨🏻‍💻</h1>
 </div>
 
@@ -12,7 +12,7 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
 - **Campos:** E-mail e Senha.
 - **Funcionalidade "Esqueci minha senha":** Caso o usuário esqueça a senha, ele pode clicar em "Esqueceu a senha?".
 - **Esqueci minha Senha:**
-  - O usuário será redirecionado para a tela de *request password*, onde deverá inserir o e-mail associado à conta.
+  - O usuário será redirecionado para a tela de _request password_, onde deverá inserir o e-mail associado à conta.
   - Um e-mail será enviado para o endereço fornecido, contendo um botão para resetar a senha.
   - Ao clicar no botão, o sistema redirecionará o usuário para uma tela de criação de nova senha.
   - O sistema validará o token antes de permitir a criação de uma nova senha.
@@ -20,6 +20,7 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
 ### 2. Home Page
 
 - **Navbar:**
+
   - **Logo e Nome da Empresa:** Marcelo Desenvolvedor.
   - **Links:**
     - **Home:** Redireciona para a página inicial.
@@ -27,7 +28,7 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
     - **User Icon:** Acessa o perfil do usuário, permite trocar a senha e permite realizar logout.
 
 - **Tabela de Usuários:**
-  - **Colunas:** 
+  - **Colunas:**
     - ID
     - Username
     - Nome
@@ -36,20 +37,20 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
     - Telefone
     - Permissão
     - Ações (View, Update, Delete)
-  - **Filtragem:** 
+  - **Filtragem:**
     - Filtro de permissões acima da tabela para selecionar entre "Admin", "User" e "Read".
-  - **Busca:** 
+  - **Busca:**
     - Campo de pesquisa para localizar usuários na tabela.
-  - **Adicionar Novo Usuário:** 
+  - **Adicionar Novo Usuário:**
     - Botão para adicionar um novo usuário ao sistema (disponível apenas para Admin e User).
 
 ### 3. Permissões de Usuário
 
-- **Admin:** 
+- **Admin:**
   - Pode adicionar, visualizar, atualizar e deletar usuários.
 - **User:**
   - Pode adicionar, visualizar e atualizar usuários, mas não pode deletar.
-- **Read:** 
+- **Read:**
   - Somente visualiza os usuários.
 
 ## Stacks utilizadas
@@ -66,7 +67,29 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
 
 <img src="https://skillicons.dev/icons?i=vite,react,fastapi,python,git,sqlite&theme=dark" />
 
-## Documentação da API - CRUD
+## Preview
+
+### Tela de Login
+
+![Tela de Login](./docs/assets/tela-de-login.png)
+
+### Home Page
+
+![Home Page](./docs/assets/home-page.png)
+
+### Add User Page
+
+![Add User Page](./docs/assets/add-user-page.png)
+
+### Update User Page
+
+![Update User Page](./docs/assets/update-user-page.png)
+
+### View User Page
+
+![View User Page](./docs/assets/view-user-page.png)
+
+## Documentação da API - CRUD Usuários
 
 As chamadas para a API seguem um padrão consistente para a entidade Usuários. Para utilizar diferentes recursos relacionados a usuários, substitua o caminho e os parâmetros conforme necessário. Abaixo estão exemplos específicos para interações com **Usuários**.
 
@@ -78,9 +101,9 @@ Retorna uma lista de todos os Usuários cadastrados.
   GET /user/list
 ```
 
-| Parâmetro   | Tipo       | Descrição                           | 
-| :---------- | :--------- | :---------------------------------- |
-| `SECRET_KEY` | `string` | **Obrigatório**. 	Chave de autenticação da API. |
+| Parâmetro    | Tipo     | Descrição                                      |
+| :----------- | :------- | :--------------------------------------------- |
+| `SECRET_KEY` | `string` | **Obrigatório**. Chave de autenticação da API. |
 
 ### Obter Usuário por ID
 
@@ -90,10 +113,10 @@ Retorna os detalhes de um Usuário específico.
   GET /user/view/{id_user}
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `id_user` | `int` | **Obrigatório**. ID do usuário que deseja consultar. |
-| `SECRET_KEY` | `string` | **Obrigatório**. 	Chave de autenticação da API. |
+| Parâmetro    | Tipo     | Descrição                                            |
+| :----------- | :------- | :--------------------------------------------------- |
+| `id_user`    | `int`    | **Obrigatório**. ID do usuário que deseja consultar. |
+| `SECRET_KEY` | `string` | **Obrigatório**. Chave de autenticação da API.       |
 
 ### Criar um Novo Usuário
 
@@ -103,35 +126,36 @@ Adiciona um novo Usuário ao sistema.
   POST /user/create
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `username` | `string` | **Obrigatório**. 	Username do usuário. |
-| `name` | `string` | **Obrigatório**. Nome do usuário. |
-| `last_name` | `string` | **Obrigatório**. Sobrenome do usuário. |
-| `email` | `string` | **Obrigatório**. Email do usuário. |
-| `hashed_password` | `string` | **Obrigatório**. Senha do usuário. |
-| `telephone` | `string` | **Obrigatório**. Telefone do usuário. |
-| `permission` | `string` | **Obrigatório**. Permissão do usuário. |
-| `SECRET_KEY` | `string` | **Obrigatório**. Chave de autenticação da API. |
+| Parâmetro         | Tipo     | Descrição                                      |
+| :---------------- | :------- | :--------------------------------------------- |
+| `username`        | `string` | **Obrigatório**. Username do usuário.          |
+| `name`            | `string` | **Obrigatório**. Nome do usuário.              |
+| `last_name`       | `string` | **Obrigatório**. Sobrenome do usuário.         |
+| `email`           | `string` | **Obrigatório**. Email do usuário.             |
+| `hashed_password` | `string` | **Obrigatório**. Senha do usuário.             |
+| `telephone`       | `string` | **Obrigatório**. Telefone do usuário.          |
+| `permission`      | `string` | **Obrigatório**. Permissão do usuário.         |
+| `SECRET_KEY`      | `string` | **Obrigatório**. Chave de autenticação da API. |
 
 ### Atualiza um Usuário
+
 Atualiza as informações de um Usuário existente.
 
 ```http
   PUT /user/update/{id_user}
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `id_user` | `int` | **Obrigatório**. ID do usuário. |
-| `username` | `string` | **Opcional**. Username do usuário. |
-| `name` | `string` | **Opcional**. Nome do usuário. |
-| `last_name` | `string` | **Opcional**. Sobrenome do usuário. |
-| `email` | `string` | **Opcional**. Email do usuário. |
-| `hashed_password` | `string` | **Opcional**. Senha do usuário. |
-| `telephone` | `string` | **Opcional**. Telefone do usuário. |
-| `permission` | `string` | **Opcional**. Permissão do usuário. |
-| `SECRET_KEY` | `string` | **Obrigatório**. Chave de autenticação da API. |
+| Parâmetro         | Tipo     | Descrição                                      |
+| :---------------- | :------- | :--------------------------------------------- |
+| `id_user`         | `int`    | **Obrigatório**. ID do usuário.                |
+| `username`        | `string` | **Opcional**. Username do usuário.             |
+| `name`            | `string` | **Opcional**. Nome do usuário.                 |
+| `last_name`       | `string` | **Opcional**. Sobrenome do usuário.            |
+| `email`           | `string` | **Opcional**. Email do usuário.                |
+| `hashed_password` | `string` | **Opcional**. Senha do usuário.                |
+| `telephone`       | `string` | **Opcional**. Telefone do usuário.             |
+| `permission`      | `string` | **Opcional**. Permissão do usuário.            |
+| `SECRET_KEY`      | `string` | **Obrigatório**. Chave de autenticação da API. |
 
 ### Deletar um Usuário
 
@@ -141,10 +165,10 @@ Remove um Usuário do sistema.
   DELETE /user/delete/{id_user}
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `id_user` | `int` | **Obrigatório**. ID do usuário que será deletado. |
-| `SECRET_KEY` | `string` | **Obrigatório**. Chave de autenticação da API. |
+| Parâmetro    | Tipo     | Descrição                                         |
+| :----------- | :------- | :------------------------------------------------ |
+| `id_user`    | `int`    | **Obrigatório**. ID do usuário que será deletado. |
+| `SECRET_KEY` | `string` | **Obrigatório**. Chave de autenticação da API.    |
 
 #### Observações Gerais:
 
@@ -165,10 +189,10 @@ Este endpoint permite que um usuário autenticado receba um token de acesso JWT.
   POST /login/token
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
+| Parâmetro  | Tipo     | Descrição                                      |
+| :--------- | :------- | :--------------------------------------------- |
 | `username` | `string` | **Obrigatório**. E-mail do usuário para login. |
-| `password` | `string` | **Obrigatório**. Senha do usuário. |
+| `password` | `string` | **Obrigatório**. Senha do usuário.             |
 
 ### Obter Dados do Usuário Autenticado
 
@@ -180,8 +204,8 @@ Valida o token e retorna as informações do usuário autenticado.
   GET /login/me
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
+| Parâmetro       | Tipo     | Descrição                                           |
+| :-------------- | :------- | :-------------------------------------------------- |
 | `Authorization` | `string` | **Obrigatório**. Token JWT no formato Bearer Token. |
 
 #### Exemplo de Fluxo de Autenticação:
@@ -214,16 +238,16 @@ Este endpoint permite que um usuário autenticado altere sua senha atual para um
 
 É necessário enviar o token JWT no cabeçalho da requisição no formato `Bearer Token`.
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `Authorization` | `string` | **Obrigatório**. 	Token JWT no formato Bearer Token. |
+| Parâmetro       | Tipo     | Descrição                                           |
+| :-------------- | :------- | :-------------------------------------------------- |
+| `Authorization` | `string` | **Obrigatório**. Token JWT no formato Bearer Token. |
 
 #### Cabeçalho de Autorização:
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `current_password` | `string` | **Obrigatório**. A senha atual do usuário. |
-| `new_password` | `string` | **Obrigatório**. A nova senha que será definida. |
+| Parâmetro          | Tipo     | Descrição                                        |
+| :----------------- | :------- | :----------------------------------------------- |
+| `current_password` | `string` | **Obrigatório**. A senha atual do usuário.       |
+| `new_password`     | `string` | **Obrigatório**. A nova senha que será definida. |
 
 #### Requisitos de Senha
 
@@ -250,9 +274,9 @@ Este endpoint permite solicitar a redefinição de senha enviando um e-mail de r
   POST /reset-password/request-password
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `email` | `string` | **Obrigatório**. 	E-mail cadastrado do usuário. |
+| Parâmetro | Tipo     | Descrição                                      |
+| :-------- | :------- | :--------------------------------------------- |
+| `email`   | `string` | **Obrigatório**. E-mail cadastrado do usuário. |
 
 ### Verificar Token de Redefinição de Senha
 
@@ -264,9 +288,9 @@ Valida o token recebido no e-mail antes de permitir a redefinição de senha.
   POST /reset-password/verify
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `token` | `string` | **Obrigatório**. Token de redefinição de senha. |
+| Parâmetro | Tipo     | Descrição                                       |
+| :-------- | :------- | :---------------------------------------------- |
+| `token`   | `string` | **Obrigatório**. Token de redefinição de senha. |
 
 ### Redefinir Senha
 
@@ -278,10 +302,10 @@ Permite ao usuário redefinir sua senha após a validação do token.
   POST /reset-password/reset
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `token` | `string` | **Obrigatório**. Token de redefinição de senha. |
-| `new_password` | `string` | **Obrigatório**. 	Nova senha do usuário. |
+| Parâmetro      | Tipo     | Descrição                                       |
+| :------------- | :------- | :---------------------------------------------- |
+| `token`        | `string` | **Obrigatório**. Token de redefinição de senha. |
+| `new_password` | `string` | **Obrigatório**. Nova senha do usuário.         |
 
 #### Requisitos de Senha
 
@@ -310,12 +334,12 @@ O endpoint de registro permite a criação de novos usuários no sistema. Após 
   POST /register
 ```
 
-| Parâmetro   | Tipo       | Descrição                                   |
-| :---------- | :--------- | :------------------------------------------ |
-| `username` | `string` | **Obrigatório**. E-mail do usuário para login(único). |
-| `email` | `string` | **Obrigatório**. E-mail do usuário (único). |
-| `hashed_password` | `string` | **Obrigatório**. Senha do usuário(hash). |
-| `permission` | `string` | **Obrigatório**. 	Permissão atribuída ao usuário. |
+| Parâmetro         | Tipo     | Descrição                                             |
+| :---------------- | :------- | :---------------------------------------------------- |
+| `username`        | `string` | **Obrigatório**. E-mail do usuário para login(único). |
+| `email`           | `string` | **Obrigatório**. E-mail do usuário (único).           |
+| `hashed_password` | `string` | **Obrigatório**. Senha do usuário(hash).              |
+| `permission`      | `string` | **Obrigatório**. Permissão atribuída ao usuário.      |
 
 #### Códigos de Status:
 
@@ -328,6 +352,7 @@ O endpoint de registro permite a criação de novos usuários no sistema. Após 
 - O sistema verifica se o e-mail já está registrado.
 - Se for novo, o usuário é registrado, e um token JWT é gerado para autenticação.
 - A resposta inclui o token de acesso, permitindo que o usuário esteja imediatamente autenticado.
+
 ## Variáveis de Ambiente
 
 Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
@@ -364,8 +389,8 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 - Python 3.8+ (para o backend)
 - Node.js 16+ (para o frontend)
 - Gerenciador de Pacotes:
-    - Pip para Python
-    - NPM ou YARN para Node.js
+  - Pip para Python
+  - NPM ou YARN para Node.js
 
 ### 1. Configuração do Backend (FastAPI)
 
@@ -418,6 +443,7 @@ Inicie com o código bash abaixou ou iniciando o arquivo `run.py`, que está no 
 ```bash
   uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 ```
+
 O backend estará disponível em: http://localhost:8000.
 
 ### 2. Configuração do Frontend (React com Vite)
