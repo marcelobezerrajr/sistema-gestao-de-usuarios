@@ -9,6 +9,7 @@ import {
   Col,
   Container,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { FaSave } from "react-icons/fa";
 import useUser from "../../hooks/useUser";
 import MainLayout from "../../layouts/MainLayout";
@@ -30,6 +31,7 @@ const UpdateUserPage = () => {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(null);
   const [userPermission, setUserPermission] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const permission = localStorage.getItem("user_permission");
@@ -123,6 +125,9 @@ const UpdateUserPage = () => {
       setSuccess("User updated successfully!");
       const updatedUser = await getUser(id_user);
       setuserData({ ...updatedUser });
+      setTimeout(() => {
+        navigate("/users");
+      }, 1000);
     } catch (error) {
       setErrors({ form: "Error updating user. Try again." });
     } finally {

@@ -9,6 +9,7 @@ import {
   Col,
   Container,
 } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { FaSave, FaEye, FaEyeSlash } from "react-icons/fa";
 import useUser from "../../hooks/useUser";
 import MainLayout from "../../layouts/MainLayout";
@@ -30,6 +31,7 @@ const AddUserPage = () => {
   const [success, setSuccess] = useState(null);
   const [userPermission, setUserPermission] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const permission = localStorage.getItem("user_permission");

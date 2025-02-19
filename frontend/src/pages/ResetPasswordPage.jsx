@@ -8,6 +8,7 @@ import "../styles/reset-password-page.css";
 
 const ResetPasswordPage = () => {
   const [newPassword, setNewPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showPasswords, setShowPasswords] = useState({
     newPassword: false,
