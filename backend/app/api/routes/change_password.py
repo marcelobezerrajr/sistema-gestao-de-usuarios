@@ -51,13 +51,10 @@ def change_password(
             detail="Current password is incorrect",
         )
 
-    errors = validate_password(request.new_password)
-    if errors:
-        if isinstance(errors, list):
-            errors = ", ".join(errors)
+    if not validate_password(request.new_password):
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail=errors,
+            detail="New password does not meet complexity requirements",
         )
 
     user.hashed_password = get_password_hash(request.new_password)
