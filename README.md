@@ -25,8 +25,6 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
     - **Home:** Redireciona para a página inicial.
     - **About:** Informações sobre o sistema ou a empresa.
     - **User Icon:** Acessa o perfil do usuário, permite trocar a senha e permite realizar logout.
-  - **Adicionar Novo Cliente:** Botão para adicionar um novo usuário ao sistema (disponível apenas para Admin e User).
-  - **Search:** Campo de pesquisa para localizar usuários na tabela.
 
 - **Tabela de Usuários:**
   - **Colunas:** 
@@ -40,6 +38,10 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
     - Ações (View, Update, Delete)
   - **Filtragem:** 
     - Filtro de permissões acima da tabela para selecionar entre "Admin", "User" e "Read".
+  - **Busca:** 
+    - Campo de pesquisa para localizar usuários na tabela.
+  - **Adicionar Novo Usuário:** 
+    - Botão para adicionar um novo usuário ao sistema (disponível apenas para Admin e User).
 
 ### 3. Permissões de Usuário
 
