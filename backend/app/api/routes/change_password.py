@@ -8,6 +8,7 @@ from app.database.models.models_user import User
 from app.utils.hashing import get_password_hash, verify_password
 from app.utils.validate_password import validate_password
 from app.api.depends import get_db, oauth2_scheme
+from app.schemas.schemas_response import ChangePasswordRequest
 
 load_dotenv()
 
@@ -24,8 +25,7 @@ change_password_router = APIRouter(prefix="/change-password")
 
 @change_password_router.post("")
 def change_password(
-    current_password: str,
-    new_password: str,
+    request: ChangePasswordRequest,
     token: str = Depends(oauth2_scheme),
     db: Session = Depends(get_db),
 ):
@@ -45,18 +45,21 @@ def change_password(
     if user is None:
         raise credentials_exception
 
-    if not verify_password(current_password, user.hashed_password):
+    if not verify_password(request.current_password, user.hashed_password):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Current password is incorrect",
         )
 
-    if not validate_password(new_password):
+    errors = validate_password(request.new_password)
+    if errors:
+        if isinstance(errors, list):
+            errors = ", ".join(errors)
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
-            detail="New password does not meet complexity requirements",
+            detail=errors,
         )
 
-    user.hashed_password = get_password_hash(new_password)
+    user.hashed_password = get_password_hash(request.new_password)
     db.commit()
     return {"message": "Password changed successfully"}

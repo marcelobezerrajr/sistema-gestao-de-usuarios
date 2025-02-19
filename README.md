@@ -89,6 +89,10 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
 
 ![View User Page](./docs/assets/view-user-page.png)
 
+### Change Password Page
+
+![Change Password Page](./docs/assets/change-password-page.png)
+
 ## Documentação da API - CRUD Usuários
 
 As chamadas para a API seguem um padrão consistente para a entidade Usuários. Para utilizar diferentes recursos relacionados a usuários, substitua o caminho e os parâmetros conforme necessário. Abaixo estão exemplos específicos para interações com **Usuários**.
