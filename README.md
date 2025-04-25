@@ -427,7 +427,7 @@ Certifique-se de que o arquivo `requirements.txt` está na pasta `backend`.
 Crie um arquivo `.env` na raiz da pasta `backend` com as seguintes variáveis:
 
 ```bash
-  SQLALCHEMY_DATABASE_URL=sqlite:///./vendas.db  # ou outro banco (PostgreSQL, MySQL etc.)
+  SQLALCHEMY_DATABASE_URL=postgresql://usuario:senha@localhost:5432/nome_do_banco  # ou outro banco (MongoDB, MySQL etc.)
   SECRET_KEY=chave_secreta
   ALGORITHM=HS256
   ACCESS_TOKEN_EXPIRE_MINUTES=120
