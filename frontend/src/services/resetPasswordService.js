@@ -13,7 +13,7 @@ export const verifyResetToken = async (token) => {
 
 export const resetPassword = async (token, newPassword) => {
   try {
-    const response = await api.post("/reset-password/reset", {
+    const response = await api.post("/reset-password", {
       token,
       new_password: newPassword,
     });

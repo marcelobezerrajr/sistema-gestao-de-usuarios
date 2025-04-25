@@ -30,6 +30,41 @@ if not ACCESS_TOKEN_EXPIRE_MINUTES or not SECRET_KEY or not ALGORITHM:
 login_router = APIRouter(prefix="/login")
 
 
+@login_router.get("", response_model=TokenData)
+def read_users_me(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Invalid access token",
+    )
+
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email: str = payload.get("sub")
+        permission: str = payload.get("permission", "read")
+
+        if email is None:
+            logger.warning("Token payload missing 'sub' (email).")
+            raise credentials_exception
+
+        token_data = TokenData(email=email, permission=permission)
+    except JWTError as e:
+        logger.error(f"JWTError during request: {e}")
+        raise credentials_exception
+
+    user = db.query(User).filter(User.email == token_data.email).first()
+    if user is None:
+        logger.warning(f"Token validation failed: User {token_data.email} not found.")
+        raise credentials_exception
+
+    logger.info(f"Token validated successfully for user {user.email}.")
+
+    return {
+        "email": user.email,
+        "permission": user.permission,
+        "username": user.username,
+    }
+
+
 @login_router.post("/token", response_model=Token)
 def login_for_access_token(
     db: Session = Depends(get_db), form_data: OAuth2PasswordRequestForm = Depends()
@@ -62,39 +97,4 @@ def login_for_access_token(
         "user_username": user.username,
         "user_email": user.email,
         "user_permission": user.permission,
-    }
-
-
-@login_router.get("/me", response_model=TokenData)
-def read_users_me(token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)):
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Invalid access token",
-    )
-
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        email: str = payload.get("sub")
-        permission: str = payload.get("permission", "read")
-
-        if email is None:
-            logger.warning("Token payload missing 'sub' (email).")
-            raise credentials_exception
-
-        token_data = TokenData(email=email, permission=permission)
-    except JWTError as e:
-        logger.error(f"JWTError during /me request: {e}")
-        raise credentials_exception
-
-    user = db.query(User).filter(User.email == token_data.email).first()
-    if user is None:
-        logger.warning(f"Token validation failed: User {token_data.email} not found.")
-        raise credentials_exception
-
-    logger.info(f"Token validated successfully for user {user.email}.")
-
-    return {
-        "email": user.email,
-        "permission": user.permission,
-        "username": user.username,
     }

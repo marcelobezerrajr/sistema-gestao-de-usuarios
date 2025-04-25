@@ -2,7 +2,7 @@ import api from "./api";
 
 const requestPasswordService = async (email) => {
   try {
-    const response = await api.post("/reset-password/request-password", {
+    const response = await api.post("/reset-password/request", {
       email,
     });
 

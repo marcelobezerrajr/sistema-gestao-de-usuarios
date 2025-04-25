@@ -34,7 +34,7 @@ if not ACCESS_TOKEN_EXPIRE_MINUTES:
 user_router = APIRouter(prefix="/user")
 
 
-@user_router.get("/list", response_model=UsersListResponse)
+@user_router.get("", response_model=UsersListResponse)
 def list_users_route(
     db: Session = Depends(get_db), current_user: User = Depends(get_read_user_admin)
 ):
@@ -55,7 +55,38 @@ def list_users_route(
         )
 
 
-@user_router.post("/create", response_model=UsersListResponse)
+@user_router.get("/{id_user}", response_model=UsersListResponse)
+def view_user_route(
+    id_user: int,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_read_user_admin),
+):
+    try:
+        user = get_user_by_id(db, id_user)
+        if not user:
+            raise HTTPException(status_code=404, detail="User not found")
+        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        access_token = create_access_token(
+            data={"sub": current_user.email}, expires_delta=access_token_expires
+        )
+        logger.info(
+            f"User details retrieved successfully by user: {current_user.username}"
+        )
+        return {
+            "status": "success",
+            "message": "User details retrieved successfully.",
+            "data": [UserOut.from_orm(user)],
+            "access_token": access_token,
+            "token_type": "bearer",
+        }
+    except Exception as e:
+        logger.error(f"Error view user {current_user.email}: {str(e)}")
+        raise HTTPException(
+            status_code=500, detail="An error occurred while view user."
+        )
+
+
+@user_router.post("", response_model=UsersListResponse)
 def create_user_route(
     db: Session = Depends(get_db),
     user_form: UserForm = Body(...),
@@ -95,38 +126,7 @@ def create_user_route(
         )
 
 
-@user_router.get("/view/{id_user}", response_model=UsersListResponse)
-def view_user_route(
-    id_user: int,
-    db: Session = Depends(get_db),
-    current_user: User = Depends(get_read_user_admin),
-):
-    try:
-        user = get_user_by_id(db, id_user)
-        if not user:
-            raise HTTPException(status_code=404, detail="User not found")
-        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        access_token = create_access_token(
-            data={"sub": current_user.email}, expires_delta=access_token_expires
-        )
-        logger.info(
-            f"User details retrieved successfully by user: {current_user.username}"
-        )
-        return {
-            "status": "success",
-            "message": "User details retrieved successfully.",
-            "data": [UserOut.from_orm(user)],
-            "access_token": access_token,
-            "token_type": "bearer",
-        }
-    except Exception as e:
-        logger.error(f"Error view user {current_user.email}: {str(e)}")
-        raise HTTPException(
-            status_code=500, detail="An error occurred while view user."
-        )
-
-
-@user_router.put("/update/{id_user}", response_model=UsersListResponse)
+@user_router.put("/{id_user}", response_model=UsersListResponse)
 def update_user_route(
     id_user: int,
     user_form: UserUpdateForm,
@@ -156,7 +156,7 @@ def update_user_route(
         )
 
 
-@user_router.delete("/delete/{id_user}", response_model=UsersListResponse)
+@user_router.delete("/{id_user}", response_model=UsersListResponse)
 def delete_user_route(
     id_user: int,
     db: Session = Depends(get_db),

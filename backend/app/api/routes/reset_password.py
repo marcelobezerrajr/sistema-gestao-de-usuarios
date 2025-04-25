@@ -51,7 +51,56 @@ def create_reset_token(user_id: str):
     )
 
 
-@reset_password_router.post("/request-password")
+@reset_password_router.post("")
+def reset_password(request: ResetPasswordRequest, db: Session = Depends(get_db)):
+    try:
+        payload = jwt.decode(request.token, SECRET_KEY, algorithms=[ALGORITHM])
+        user_id: str = payload.get("sub")
+        jti: str = payload.get("jti")
+        if not user_id or not jti:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Invalid token structure",
+            )
+    except JWTError as e:
+        logger.error(f"Token verification failed during reset: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token",
+        )
+
+    user = db.query(User).filter(User.id_user == user_id).first()
+    if (
+        not user
+        or user.reset_password_token != request.token
+        or user.reset_token_expires_at < datetime.utcnow()
+    ):
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid or expired token",
+        )
+
+    if not validate_password(request.new_password):
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Password does not meet complexity requirements",
+        )
+
+    user.hashed_password = get_password_hash(request.new_password)
+    user.reset_password_token = None
+    user.reset_token_expires_at = None
+    db.commit()
+
+    try:
+        send_password_reset_confirmation_email(user.email)
+        logger.info(f"Password reset successfully for user ID: {user_id}")
+    except Exception as e:
+        logger.error(f"Failed to send confirmation email: {e}")
+
+    return {"message": "Password reset successfully"}
+
+
+@reset_password_router.post("/request")
 def forgot_password(request: EmailRequest, db: Session = Depends(get_db)):
     email = request.email
     if "@" not in email or "." not in email:
@@ -120,52 +169,3 @@ def verify_reset_token(request: TokenRequest, db: Session = Depends(get_db)):
         )
 
     return {"message": "Token is valid"}
-
-
-@reset_password_router.post("/reset")
-def reset_password(request: ResetPasswordRequest, db: Session = Depends(get_db)):
-    try:
-        payload = jwt.decode(request.token, SECRET_KEY, algorithms=[ALGORITHM])
-        user_id: str = payload.get("sub")
-        jti: str = payload.get("jti")
-        if not user_id or not jti:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid token structure",
-            )
-    except JWTError as e:
-        logger.error(f"Token verification failed during reset: {e}")
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or expired token",
-        )
-
-    user = db.query(User).filter(User.id_user == user_id).first()
-    if (
-        not user
-        or user.reset_password_token != request.token
-        or user.reset_token_expires_at < datetime.utcnow()
-    ):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or expired token",
-        )
-
-    if not validate_password(request.new_password):
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Password does not meet complexity requirements",
-        )
-
-    user.hashed_password = get_password_hash(request.new_password)
-    user.reset_password_token = None
-    user.reset_token_expires_at = None
-    db.commit()
-
-    try:
-        send_password_reset_confirmation_email(user.email)
-        logger.info(f"Password reset successfully for user ID: {user_id}")
-    except Exception as e:
-        logger.error(f"Failed to send confirmation email: {e}")
-
-    return {"message": "Password reset successfully"}

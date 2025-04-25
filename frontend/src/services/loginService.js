@@ -17,7 +17,7 @@ const loginService = {
 
       localStorage.setItem("access_token", result.access_token);
 
-      const userResponse = await api.get("/login/me", {
+      const userResponse = await api.get("/login", {
         headers: {
           Authorization: `Bearer ${result.access_token}`,
         },
@@ -39,7 +39,7 @@ const loginService = {
 
   getUserFromToken: async (token) => {
     try {
-      const response = await api.get("/login/me", {
+      const response = await api.get("/login", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
