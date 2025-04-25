@@ -5,6 +5,11 @@ import logging
 
 from app.api.routes import login, register, reset_password, change_password, user
 from app.database.database import engine, Base
+from app.utils.migrations import run_alembic_upgrade
+
+logging.basicConfig(level=logging.INFO)
+logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
+logging.getLogger("alembic.runtime.migration").setLevel(logging.INFO)
 
 app = FastAPI(docs_url="/docs", redoc_url="/redoc")
 
@@ -48,6 +53,11 @@ def global_exception_handler(request: Request, exc: Exception):
 
 
 configure_all(app)
+
+
+@app.on_event("startup")
+def startup_event():
+    run_alembic_upgrade()
 
 
 @app.get("/")
