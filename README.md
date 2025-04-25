@@ -59,13 +59,15 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
 
 **Back-end:** FastApi
 
-**SQL:** Sqlite
+**SQL:** PostgreSQL, SQLite(teste)
 
 **Autenticação e Autorização:** JWT e OAuth2PasswordBearer
 
 **Envio de E-mails:** MIMEMultipart
 
-<img src="https://skillicons.dev/icons?i=vite,react,fastapi,python,git,sqlite&theme=dark" />
+**Migrations:** Alembic
+
+<img src="https://skillicons.dev/icons?i=vite,react,fastapi,python,postgresql,git&theme=dark" />
 
 ## Preview
 
