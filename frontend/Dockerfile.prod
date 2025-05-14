@@ -9,7 +9,6 @@ RUN npm install
 COPY . .
 RUN npm run build
 
-# Etapa de produção
 FROM node:22-alpine AS production
 
 WORKDIR /app
