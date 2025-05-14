@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Table, Alert } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { GoChevronLeft, GoChevronRight } from "react-icons/go";
+import { MdFirstPage, MdLastPage } from "react-icons/md";
+import MainLayout from "../../layouts/MainLayout";
+import useUser from "../../hooks/useUser";
 import TableRow from "../../components/TableRow";
 import SearchComponent from "../../components/SearchComponent";
-import useUser from "../../hooks/useUser";
-import MainLayout from "../../layouts/MainLayout";
 import FilterComponent from "../../components/FilterComponent";
-import { useNavigate } from "react-router-dom";
+import Pagination from "../../components/PaginationsComponent";
 import "../../styles/User/user-page.css";
 
 const UserPage = () => {
@@ -15,6 +18,8 @@ const UserPage = () => {
   const [tipoUserFilter, setTipoUserFilter] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const usersPerPage = 20;
 
   const navigate = useNavigate();
   const userPermission = localStorage.getItem("user_permission");
@@ -61,6 +66,11 @@ const UserPage = () => {
     setAlertMessage("User deleted successfully!");
     setAlertVariant("success");
   };
+
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = filteredUsers.slice(indexOfFirstUser, indexOfLastUser);
+  const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
 
   const tipoUserOptions = [
     { value: "Admin", label: "Admin" },
@@ -130,7 +140,7 @@ const UserPage = () => {
               </tr>
             </thead>
             <tbody>
-              {filteredUsers.map((user) => (
+              {currentUsers.map((user) => (
                 <TableRow
                   id_user={user.id_user}
                   username={user.username}
@@ -148,6 +158,11 @@ const UserPage = () => {
             </tbody>
           </Table>
         )}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </MainLayout>
   );

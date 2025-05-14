@@ -3,11 +3,11 @@
     <h1 align="center">Sistema Gestão de Usuários 👨🏻‍💻</h1>
 </div>
 
-Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o controle de acesso e a administração de usuários dentro de uma aplicação. Ele oferece uma interface amigável e segura para que administradores possam gerenciar contas de usuários, com diferentes níveis de permissão, e realizar ações de CRUD (Create, Read, Update, Delete).
+Um sistema web completo para gerenciamento de usuários, com foco em segurança, controle de acesso e usabilidade. Permite que administradores gerenciem contas com diferentes níveis de permissão por meio de uma interface intuitiva e responsiva.
 
-## Funcionalidades Principais
+## 🚀 Funcionalidades Principais
 
-### 1. Tela de Login
+### 🔐 Tela de Login
 
 - **Campos:** E-mail e Senha.
 - **Funcionalidade "Esqueci minha senha":** Caso o usuário esqueça a senha, ele pode clicar em "Esqueceu a senha?".
@@ -17,7 +17,7 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
   - Ao clicar no botão, o sistema redirecionará o usuário para uma tela de criação de nova senha.
   - O sistema validará o token antes de permitir a criação de uma nova senha.
 
-### 2. Home Page
+### 🏠 Home Page
 
 - **Navbar:**
 
@@ -44,7 +44,7 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
   - **Adicionar Novo Usuário:**
     - Botão para adicionar um novo usuário ao sistema (disponível apenas para Admin e User).
 
-### 3. Permissões de Usuário
+### 👤 Permissões de Usuário
 
 - **Admin:**
   - Pode adicionar, visualizar, atualizar e deletar usuários.
@@ -53,49 +53,53 @@ Um sistema web de gerenciamento de usuários, desenvolvido para facilitar o cont
 - **Read:**
   - Somente visualiza os usuários.
 
-## Stacks utilizadas
+## ⚙️ Stacks utilizadas
 
-**Front-end:** React
+| Camada       | Stack                                |
+| ------------ | ------------------------------------ |
+| Frontend     | React + Vite                         |
+| Backend      | FastAPI (Python)                     |
+| Banco        | PostgreSQL (produção) / SQLite (dev) |
+| Autenticação | JWT + OAuth2PasswordBearer           |
+| E-mail       | SMTP (MIMEMultipart)                 |
+| Migrations   | Alembic                              |
+| Docker       | Docker + Docker Compose              |
 
-**Back-end:** FastApi
+<img src="https://skillicons.dev/icons?i=vite,react,fastapi,python,postgresql,docker,git&theme=dark" />
 
-**SQL:** PostgreSQL, SQLite(teste)
-
-**Autenticação e Autorização:** JWT e OAuth2PasswordBearer
-
-**Envio de E-mails:** MIMEMultipart
-
-**Migrations:** Alembic
-
-<img src="https://skillicons.dev/icons?i=vite,react,fastapi,python,postgresql,git&theme=dark" />
-
-## Preview
+## ⏮️ Preview
 
 ### Tela de Login
 
 ![Tela de Login](./docs/assets/tela-de-login.png)
+_Tela de login com opção de recuperação de senha._
 
 ### Home Page
 
 ![Home Page](./docs/assets/home-page.png)
+_Tela principal, aonde podemos ver algumas funcionalidades e onde fica o registro do usuários._
 
 ### Add User Page
 
 ![Add User Page](./docs/assets/add-user-page.png)
+_Tela de adicionar usuário._
 
 ### Update User Page
 
 ![Update User Page](./docs/assets/update-user-page.png)
+_Tela de atualizar usuário._
 
 ### View User Page
 
 ![View User Page](./docs/assets/view-user-page.png)
+_Tela de visualizar usuário._
 
 ### Change Password Page
 
 ![Change Password Page](./docs/assets/change-password-page.png)
+_Tela de trocar senha estando logado._
 
-## Documentação da API - CRUD Usuários
+## 📚 Documentação da API - CRUD Usuários
 
 As chamadas para a API seguem um padrão consistente para a entidade Usuários. Para utilizar diferentes recursos relacionados a usuários, substitua o caminho e os parâmetros conforme necessário. Abaixo estão exemplos específicos para interações com **Usuários**.
 
@@ -181,11 +185,11 @@ Remove um Usuário do sistema.
 - Todos os endpoints exigem autenticação via `SECRET_KEY`.
 - O formato das respostas segue o padrão JSON, facilitando a integração com diferentes sistemas.
 
-## Documentação da API - Autenticação e Login
+## 📚 Documentação da API - Autenticação e Login
 
 Esta API utiliza **OAuth2 com Password Flow** para autenticação, gerando tokens **JWT** para controle de acesso. A seguir estão os endpoints para login e verificação de autenticação do usuário.
 
-### Autenticação de Login- Obter Token de Acesso
+### Autenticação de Login - Obter Token de Acesso
 
 Este endpoint permite que um usuário autenticado receba um token de acesso JWT.
 
@@ -226,7 +230,7 @@ Valida o token e retorna as informações do usuário autenticado.
 - Use o token em todos os endpoints que exigem autenticação.
 - Certifique-se de proteger a chave secreta `SECRET_KEY` e utilizar algoritmos seguros como o definido em `ALGORITHM`.
 
-## Documentação da API - Gerenciamento de Senhas
+## 📚 Documentação da API - Gerenciamento de Senhas
 
 A API oferece suporte a recuperação e redefinição de senhas de maneira segura utilizando tokens JWT para validação. Abaixo estão descritos os endpoints para solicitar a redefinição de senha, verificar o token e redefinir a senha.
 
@@ -328,7 +332,7 @@ A senha deve atender aos seguintes requisitos de complexidade:
 - Verifica o token em `/reset-password/verify`.
 - Redefine a senha em `/reset-password/reset`.
 
-## Documentação da API - Registro de Usuário
+## 📚 Documentação da API - Registro de Usuário
 
 O endpoint de registro permite a criação de novos usuários no sistema. Após o registro bem-sucedido, um token de acesso é gerado automaticamente para autenticação.
 
@@ -359,7 +363,7 @@ O endpoint de registro permite a criação de novos usuários no sistema. Após 
 - Se for novo, o usuário é registrado, e um token JWT é gerado para autenticação.
 - A resposta inclui o token de acesso, permitindo que o usuário esteja imediatamente autenticado.
 
-## Variáveis de Ambiente
+## ⚙️ Variáveis de Ambiente
 
 Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de ambiente no seu .env
 
@@ -382,13 +386,15 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
 
 `EMAIL_FROM`
 
+`URL_FRONTEND`
+
 `RESET_PASSWORD_URL`
 
 **Front-end:**
 
 `VITE_API_URL`
 
-## Guia de Instalação do Projeto (Backend: FastAPI + Frontend: React com Vite)
+## 📦 Guia de Instalação do Projeto (Backend: FastAPI + Frontend: React com Vite)
 
 ### Pré-requisitos
 
@@ -398,7 +404,7 @@ Para rodar esse projeto, você vai precisar adicionar as seguintes variáveis de
   - Pip para Python
   - NPM ou YARN para Node.js
 
-### 1. Configuração do Backend (FastAPI)
+### ⚙️ Backend - FastAPI
 
 #### Passo 1: Acesse o diretório do backend
 
@@ -429,17 +435,18 @@ Certifique-se de que o arquivo `requirements.txt` está na pasta `backend`.
 Crie um arquivo `.env` na raiz da pasta `backend` com as seguintes variáveis:
 
 ```bash
-  SQLALCHEMY_DATABASE_URL=postgresql://usuario:senha@localhost:5432/nome_do_banco  # ou outro banco (MongoDB, MySQL etc.)
-  SECRET_KEY=chave_secreta
-  ALGORITHM=HS256
-  ACCESS_TOKEN_EXPIRE_MINUTES=120
-  RESET_TOKEN_EXPIRY_HOURS=1
-  SMTP_SERVER=smtp.office365.com
-  SMTP_PORT=587
-  SMTP_USERNAME=username
-  SMTP_PASSWORD=password
-  EMAIL_FROM=email_from
-  RESET_PASSWORD_URL=http://localhost:5173/reset-password
+  SQLALCHEMY_DATABASE_URL=postgresql://usuario:senha@localhost:5432/nome_do_banco # URL do banco de dados
+  SECRET_KEY=supersecretkey           # Chave de assinatura do JWT
+  ALGORITHM=HS256                     # Algoritmo do JWT
+  ACCESS_TOKEN_EXPIRE_MINUTES=120     # Expiração do token
+  RESET_TOKEN_EXPIRY_HOURS=1          # Reseta o token
+  SMTP_SERVER=smtp.office365.com      # Servidor SMTP
+  SMTP_PORT=587                       # Porta do SMTP
+  SMTP_USERNAME=username              # Usuário de e-mail
+  SMTP_PASSWORD=password              # Senha de e-mail
+  EMAIL_FROM=email_from               # E-mail remetente
+  URL_FRONTEND=http://localhost:5173  # Url do frontend
+  RESET_PASSWORD_URL=http://localhost:5173/reset-password   # Url que reseta a senha
 ```
 
 #### Passo 5: Inicie o servidor FastAPI
@@ -452,7 +459,7 @@ Inicie com o código bash abaixou ou iniciando o arquivo `run.py`, que está no 
 
 O backend estará disponível em: http://localhost:8000.
 
-### 2. Configuração do Frontend (React com Vite)
+### 💻 Frontend - React + Vite
 
 #### Passo 1: Acesse o diretório do frontend
 
@@ -484,7 +491,7 @@ Crie um arquivo `.env` na pasta `frontend`:
   yarn dev
 ```
 
-### 3. Testando a Instalação
+### 🧑🏻‍💻 Testando a Instalação
 
 #### Backend:
 
@@ -544,6 +551,24 @@ Execute o comando para servir a pasta `dist`:
   serve -s dist
 ```
 
-## Licença
+### 🐋 Rodando com Docker
 
-[MIT](https://github.com/marcelobezerrajr/sistema-gestao-de-usuarios/blob/main/LICENSE)
+#### Pré-requisitos: **Docker** e **Docker Compose**
+
+### ⛏️ Ambiente de Desenvolvimento
+
+Para executar a aplicação em ambiente de desenvolvimento com Docker, utilize:
+
+```bash
+  docker-compose -f docker-compose.yml up --build
+```
+
+Esse comando irá iniciar os serviços definidos no arquivo docker-compose.yml, geralmente com suporte a hot reload e volumes montados para facilitar o desenvolvimento.
+
+**Verifique se você possui um arquivo .env na raiz de cada serviço (backend, frontend, etc.), contendo as variáveis de ambiente necessárias.**
+
+## 📄 Licença
+
+Este projeto está licenciado sob a licença [MIT](LICENSE).
+
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)

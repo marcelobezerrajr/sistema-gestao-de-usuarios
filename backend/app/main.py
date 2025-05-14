@@ -1,6 +1,8 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from dotenv import load_dotenv
+import os
 import logging
 
 from app.api.routes import login, register, reset_password, change_password, user
@@ -8,14 +10,19 @@ from app.database.database import engine, Base
 from app.utils.migrations import run_alembic_upgrade
 
 logging.basicConfig(level=logging.INFO)
-logging.getLogger("sqlalchemy.engine").setLevel(logging.INFO)
 logging.getLogger("alembic.runtime.migration").setLevel(logging.INFO)
+
+load_dotenv()
+URL_FRONTEND = os.getenv("URL_FRONTEND")
+
+if not URL_FRONTEND:
+    raise ValueError("URL_FRONTEND must be defined in environment variables")
 
 app = FastAPI(docs_url="/docs", redoc_url="/redoc")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],
+    allow_origins=[URL_FRONTEND],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

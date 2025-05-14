@@ -1,7 +1,7 @@
-from sqlalchemy import Column, Integer, String, DateTime, Enum as SqlEnum
+from sqlalchemy import Column, Integer, String, Date, DateTime, Enum as SqlEnum
 from app.database.database import Base
 from enum import Enum
-from datetime import datetime
+from datetime import date
 
 
 class PermissionType(str, Enum):
@@ -21,6 +21,6 @@ class User(Base):
     hashed_password = Column(String, unique=True, index=True, nullable=False)
     telephone = Column(String, unique=True, index=True, nullable=True)
     permission = Column(SqlEnum(PermissionType), default=PermissionType.user)
-    date_created = Column(DateTime, default=datetime.utcnow)
+    date_created = Column(Date, index=True, default=date.today)
     reset_password_token = Column(String, index=True, nullable=True)
     reset_token_expires_at = Column(DateTime, index=True, nullable=True)
