@@ -76,6 +76,20 @@
   transform: var(--transform-scale);
 }
 
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+.pagination-container {
+  margin-top: auto;
+}
+
 .alert-success {
   background-color: var(--success-bg);
   border: var(--success-border);

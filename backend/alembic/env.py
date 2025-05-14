@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from alembic import context
 
 from app.database.database import Base
-from app.database.models import models_user, models_token
+from app.database.models import models_user
 
 load_dotenv()
 

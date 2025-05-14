@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Table, Alert } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { GoChevronLeft, GoChevronRight } from "react-icons/go";
-import { MdFirstPage, MdLastPage } from "react-icons/md";
 import MainLayout from "../../layouts/MainLayout";
 import useUser from "../../hooks/useUser";
 import TableRow from "../../components/TableRow";
@@ -80,89 +78,97 @@ const UserPage = () => {
 
   return (
     <MainLayout>
-      <div className="table">
-        <div className="header-section">
-          <div className="filters-section">
-            <FilterComponent
-              filterOptions={tipoUserOptions}
-              filterLabel="Permission User"
-              onFilterChange={handleFilterChange}
-              selectedFilter={tipoUserFilter}
-            />
-          </div>
+      <div className="page-container">
+        <div className="content">
+          <div className="table">
+            <div className="header-section">
+              <div className="filters-section">
+                <FilterComponent
+                  filterOptions={tipoUserOptions}
+                  filterLabel="Permission User"
+                  onFilterChange={handleFilterChange}
+                  selectedFilter={tipoUserFilter}
+                />
+              </div>
 
-          <div className="actions-section">
-            <SearchComponent
-              placeholder="Search users..."
-              onSearch={handleSearch}
-            />
+              <div className="actions-section">
+                <SearchComponent
+                  placeholder="Search users..."
+                  onSearch={handleSearch}
+                />
 
-            {(userPermission === "Admin" || userPermission === "User") && (
-              <button
-                variant="primary"
-                className="custom-button"
-                onClick={handleAddUser}
+                {(userPermission === "Admin" || userPermission === "User") && (
+                  <button
+                    variant="primary"
+                    className="custom-button"
+                    onClick={handleAddUser}
+                  >
+                    Add User
+                  </button>
+                )}
+              </div>
+            </div>
+
+            {alertMessage && (
+              <Alert
+                className="user-alert-success"
+                variant={alertVariant}
+                onClose={() => setAlertMessage("")}
               >
-                Add User
-              </button>
+                {alertMessage}
+              </Alert>
+            )}
+
+            {loading ? (
+              <p>Loading...</p>
+            ) : !Array.isArray(filteredUsers) || filteredUsers.length === 0 ? (
+              <Alert className="user-alert-error" variant="warning">
+                No users found.
+              </Alert>
+            ) : (
+              <Table className="custom-table">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Telephone</th>
+                    <th>Permission</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {currentUsers.map((user) => (
+                    <TableRow
+                      id_user={user.id_user}
+                      username={user.username}
+                      name={user.name}
+                      last_name={user.last_name}
+                      email={user.email}
+                      telephone={user.telephone}
+                      permission={user.permission}
+                      key={user.id_user}
+                      handleView={handleViewUser}
+                      handleUpdate={handleUpdateUser}
+                      handleDelete={handleDeleteUser}
+                    />
+                  ))}
+                </tbody>
+              </Table>
             )}
           </div>
         </div>
 
-        {alertMessage && (
-          <Alert
-            className="user-alert-success"
-            variant={alertVariant}
-            onClose={() => setAlertMessage("")}
-          >
-            {alertMessage}
-          </Alert>
-        )}
-
-        {loading ? (
-          <p>Loading...</p>
-        ) : !Array.isArray(filteredUsers) || filteredUsers.length === 0 ? (
-          <Alert className="user-alert-error" variant="warning">
-            No users found.
-          </Alert>
-        ) : (
-          <Table className="custom-table">
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Username</th>
-                <th>Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Telephone</th>
-                <th>Permission</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {currentUsers.map((user) => (
-                <TableRow
-                  id_user={user.id_user}
-                  username={user.username}
-                  name={user.name}
-                  last_name={user.last_name}
-                  email={user.email}
-                  telephone={user.telephone}
-                  permission={user.permission}
-                  key={user.id_user}
-                  handleView={handleViewUser}
-                  handleUpdate={handleUpdateUser}
-                  handleDelete={handleDeleteUser}
-                />
-              ))}
-            </tbody>
-          </Table>
-        )}
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
+        {/* A páginação está no final, logo acima do rodapé */}
+        <div className="pagination-container">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
       </div>
     </MainLayout>
   );

@@ -1,8 +1,8 @@
-version: "3.8"
-
 services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.prod
     container_name: backend
     env_file:
       - ./backend/.env
@@ -12,7 +12,9 @@ services:
       - postgres_db
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
     container_name: frontend
     ports:
       - "3000:3000"

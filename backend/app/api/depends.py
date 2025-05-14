@@ -6,7 +6,7 @@ import os
 import logging
 
 from app.database.database import SessionLocal
-from app.database.models.models_token import TokenData
+from app.schemas.schemas_token import TokenData
 from app.database.models.models_user import User, PermissionType
 from app.core.security import oauth2_scheme
 

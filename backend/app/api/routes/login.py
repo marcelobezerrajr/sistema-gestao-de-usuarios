@@ -10,7 +10,7 @@ import logging
 from app.database.models.models_user import User
 from app.core.security import create_access_token
 from app.utils.hashing import verify_password
-from app.database.models.models_token import Token, TokenData
+from app.schemas.schemas_token import Token, TokenData
 from app.api.depends import get_db, oauth2_scheme
 
 load_dotenv()
